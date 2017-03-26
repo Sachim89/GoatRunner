@@ -1,74 +1,52 @@
 package com.GoatRunner.controller;
 
-
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
+
+import javax.ws.rs.GET;
+import javax.ws.rs.POST;
+import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
+import javax.ws.rs.QueryParam;
+import javax.ws.rs.core.Response;
+import javax.ws.rs.core.Response.Status;
 
 import com.GoatRunner.exception.GoatRunnerException;
 import com.GoatRunner.model.User;
+import com.GoatRunner.services.LoginService;
 
-
+@Path("/user")
 public class LoginController {
-	
-	public void login(String userid, String password) throws GoatRunnerException, SQLException{
-	    ConnectionController connection=new ConnectionController(); //class for connection
-	    Connection con=connection.createConnection();
-	    PreparedStatement st = con.prepareStatement("select * from Table where username=?");
-	    st.setString(1, userid);
 
-	    ResultSet rs=st.executeQuery(); 
-	    String checkUser=rs.getString(1);
-	    String checkpwd=rs.getString(2);
-	    
-	    //if user exists and password is correct
-	    if(checkUser.equals(userid) && checkpwd.equals(password)){
-	        //successful
-	    }
-	    //to check if password is incorrect
-	    if(checkUser.equals(userid) && !(checkpwd.equals(password))){
-	    	 throw new GoatRunnerException("Incorrect Password");
-	    }
-	    //if user doesn't exist in database
-	    else{
-	    	throw new GoatRunnerException("You have to signup first");
-	    }
-	  // con.close();	 
-	}
-	
-	public void signup(String name,String student_id,String password,String phone_number,String address,String favourite_location) throws GoatRunnerException, SQLException{
-		
-	    ConnectionController connection=new ConnectionController(); //class for connection
-	    Connection con=connection.createConnection();
-	    PreparedStatement st = con.prepareStatement("select * from Table where username=?");
-	    st.setString(1, student_id);
+	@Path("/login")
+	@GET
+	public Response loginUser(@PathParam("userId") String studentId, @PathParam("password") String password) {
 
-	    ResultSet rs=st.executeQuery(); 
-	    String checkUser=rs.getString(1);
-	    
-		//check if user exists
-		if(checkUser.equals(student_id)){
-			 throw new GoatRunnerException("User Already Exist");
-		    }
-		//if user doesn't exist add the user to database
-		else
-		{	
-		//adding user to database	
-		PreparedStatement st1 = con.prepareStatement("INSERT INTO Table " + "VALUES (name, student_id, password, phone_number, address,favourite_location)");
-		st1.executeQuery();
-		st1.close();
-		//creating a new user object
-		User user = new User(name);
-		user.setAddress(address);
-		user.setFavourite_location(favourite_location);
-		user.setPassword(password);
-		user.setName(name);
-		user.setPhone_number(phone_number);
-		user.setStudent_id(student_id);
-	}
-	
-	}		
-		
+		User user = new User();
+		try {
+			user = LoginService.login(studentId, password);
+		} catch (GoatRunnerException e) {
+			return Response.status(Status.BAD_REQUEST).build();
+		} catch (SQLException e) {
+			return Response.status(Status.INTERNAL_SERVER_ERROR).build();
+		}
+		return Response.status(Status.OK).entity(user).build();
 	}
 
+	@Path("/signup")
+	@POST
+	public Response signUp(@QueryParam("name") String name, @QueryParam("student_id") String student_id,
+			@QueryParam("password") String password, @QueryParam("phone_number") String phone_number,
+			@QueryParam("address") String address, @QueryParam("favourite_location") String favourite_location) {
+		try {
+			LoginService.signup(name, student_id, password, phone_number, address, favourite_location);
+		} catch (GoatRunnerException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return Response.status(Status.OK).build();
+	}
+
+}

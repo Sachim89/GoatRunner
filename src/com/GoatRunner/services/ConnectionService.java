@@ -1,10 +1,10 @@
-package com.GoatRunner.controller;
+package com.GoatRunner.services;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
-public class ConnectionController {
+public class ConnectionService {
 	static Connection createConnection(){
 		
 		
