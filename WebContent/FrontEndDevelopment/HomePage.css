@@ -1,0 +1,42 @@
+body, h1, h2, h3, h4, h5, h6 {
+	font-family: "Raleway", sans-serif
+}
+
+body, html {
+	height: 100%;
+	line-height: 1.8;
+}
+
+.bgimg-1 {
+	background-position: center;
+	background-size: cover;
+	background-image: url("Logo.png");
+	min-height: 100%;
+	margin: auto;
+}
+
+ul {
+	float: top;
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+	overflow: hidden;
+	background-color: #4CAF50;
+	widht: 100%;
+}
+
+li {
+	float: left;
+}
+
+li a {
+	display: block;
+	color: white;
+	text-align: center;
+	padding: 14px 16px;
+	text-decoration: none;
+}
+
+li a:hover {
+	background-color: #BFC9CA;
+}

@@ -1,10 +1,78 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<meta charset="UTF-8">
+<title>Sign-Up/Login Form</title>
+<link href="style.css" rel="stylesheet">
+<link href='http://fonts.googleapis.com/css?family=Titillium+Web:400,300,600' rel='stylesheet' type='text/css'>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
 </head>
-<body>
 
+<body>
+<!-- Navigate to Home Page -->
+<div>
+	<a href="HomePage.html"><img src='Icon.png' style="height: 40px; width: 70px;"> </a>
+</div>
+	
+<!-- Tab for displaying SignUp or Login -->
+<div class="form">
+	<ul class="tab-group">
+		<li class="tab"><a href="SignUp.html">Sign Up</a></li>
+		<li class="tab active"><a href="LoginPage.html">Log In</a></li>
+	</ul>
+
+<!-- Division for Login function -->
+<div>
+<div id="login">
+	<h1>Welcome Back!</h1>
+		<form action="/" method="post">
+			
+			<div class="field-wrap">
+				<label> Student ID<span class="req">*</span>
+				</label> <input type="number" id="userid" placeholder="Enter Student ID" autocomplete="off" />
+			</div>
+			
+			<div class="field-wrap">
+				<label> Password<span class="req">*</span>
+				</label> <input type="password" id="password" placeholder="Enter Password" required autocomplete="off" />
+			</div><br> <br>
+				
+			<p class="forgot">
+				<a href="#" style="color: red;">Forgot Password?</a>
+			</p>
+	
+			<button class="button button-block" onclick="submitform()">Log In</button>
+			
+			<!-- Script for handling the input values to be sent to server in JSON format -->
+			<script type="text/javascript">
+			 	function submitform()
+			 	{				 
+					var email = document.getElementById("userid").value;
+					var password = document.getElementById("password").value;
+					
+					var xhr = new XMLHttpRequest();
+		      		xhr.open(form.method, form.action, true);
+		       		xhr.setRequestHeader('Content-Type', 'application/json; charset=UTF-8');
+		       			var j = {
+		           				 "userid": email,
+		            			 "password": password,
+		       					};
+		       		xhr.send(JSON.stringify(j));
+		       		xhr.addEventListener("readystatechange", processRequest, false);
+		       		xhr.onreadystatechange = processRequest;
+		       		
+		       		function processRequest(e) 
+		       		{
+		       			if (xhr.readyState == 4 && xhr.status == 200) 
+		       			{
+		       		       window.location = "BookingPage.html";
+		       		    }
+	       			}
+			 	}
+       		</script>
+		</form>
+	</div>
+</div> <!-- Ending the Login content -->
+</div> <!-- Ending the Tab content -->
 </body>
 </html>
