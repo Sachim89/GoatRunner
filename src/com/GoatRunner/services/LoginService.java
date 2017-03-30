@@ -44,8 +44,8 @@ public class LoginService {
 		// con.close();
 	}
 
-	public static void signup(String name, String student_id, String password, String phone_number, String address,
-			String favourite_location) throws GoatRunnerException, SQLException {
+	public static void signup(String name, String student_id, String password,String email_id, String phone_number, String address,
+			String favourite_location,String security_question, String answer) throws GoatRunnerException, SQLException {
 
 		ConnectionService connection = new ConnectionService(); // class for
 																// connection
@@ -70,11 +70,14 @@ public class LoginService {
 			// creating a new user object
 			User user = new User();
 			user.setAddress(address);
+			user.setEmail_id(email_id);
 			user.setFavourite_location(favourite_location);
 			user.setPassword(password);
 			user.setName(name);
 			user.setPhone_number(phone_number);
 			user.setStudent_id(student_id);
+			user.setSecurity_question(security_question);
+			user.setAnswer(answer);
 		}
 
 	}

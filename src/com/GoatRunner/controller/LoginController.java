@@ -35,10 +35,11 @@ public class LoginController {
 	@Path("/signup")
 	@POST
 	public Response signUp(@QueryParam("name") String name, @QueryParam("student_id") String student_id,
-			@QueryParam("password") String password, @QueryParam("phone_number") String phone_number,
-			@QueryParam("address") String address, @QueryParam("favourite_location") String favourite_location) {
+			@QueryParam("password") String password,@QueryParam("email_id") String email_id,@QueryParam("phone_number") String phone_number,
+			@QueryParam("address") String address, @QueryParam("favourite_location") String favourite_location,
+			@QueryParam("security_question") String security_question,@QueryParam("answer") String answer){
 		try {
-			LoginService.signup(name, student_id, password, phone_number, address, favourite_location);
+			LoginService.signup(name, student_id, password,email_id, phone_number, address, favourite_location,security_question,answer);
 		} catch (GoatRunnerException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

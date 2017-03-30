@@ -7,9 +7,13 @@ public class User {
 	private String phone_number;
 	private String address;
 	private String favourite_location;
+	private String email_id;
+	private String security_question;
+	private String answer;
 
 	
    
+		
 		public String getName() {
 			return name;
 		}
@@ -45,6 +49,24 @@ public class User {
 		}
 		public void setFavourite_location(String favourite_location) {
 			this.favourite_location = favourite_location;
+		}
+		public String getSecurity_question() {
+			return security_question;
+		}
+		public void setSecurity_question(String security_question) {
+			this.security_question = security_question;
+		}
+		public String getAnswer() {
+			return answer;
+		}
+		public void setAnswer(String answer) {
+			this.answer = answer;
+		}
+			public String getEmail_id() {
+			return email_id;
+		}
+		public void setEmail_id(String email_id) {
+			this.email_id = email_id;
 		}
 	    
 	    
