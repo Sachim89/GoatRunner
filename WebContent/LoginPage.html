@@ -3,15 +3,17 @@
 <head>
 <meta charset="UTF-8">
 <title>Sign-Up/Login Form</title>
-<link href="style.css" rel="stylesheet">
+<link href="css/style.css" rel="stylesheet">
 <link href='http://fonts.googleapis.com/css?family=Titillium+Web:400,300,600' rel='stylesheet' type='text/css'>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+
 </head>
 
 <body>
+<script src="js/login.js"></script>
 <!-- Navigate to Home Page -->
 <div>
-	<a href="HomePage.html"><img src='Icon.png' style="height: 40px; width: 70px;"> </a>
+	<a href="HomePage.html"><img src='images/Icon.png' style="height: 40px; width: 70px;"> </a>
 </div>
 	
 <!-- Tab for displaying SignUp or Login -->
@@ -25,7 +27,7 @@
 <div>
 <div id="login">
 	<h1>Welcome Back!</h1>
-		<form action="/" method="post">
+		
 			
 			<div class="field-wrap">
 				<label> Student ID<span class="req">*</span>
@@ -43,34 +45,7 @@
 	
 			<button class="button button-block" onclick="submitform()">Log In</button>
 			
-			<!-- Script for handling the input values to be sent to server in JSON format -->
-			<script type="text/javascript">
-			 	function submitform()
-			 	{				 
-					var email = document.getElementById("userid").value;
-					var password = document.getElementById("password").value;
-					
-					var xhr = new XMLHttpRequest();
-		      		xhr.open(form.method, form.action, true);
-		       		xhr.setRequestHeader('Content-Type', 'application/json; charset=UTF-8');
-		       			var j = {
-		           				 "userid": email,
-		            			 "password": password,
-		       					};
-		       		xhr.send(JSON.stringify(j));
-		       		xhr.addEventListener("readystatechange", processRequest, false);
-		       		xhr.onreadystatechange = processRequest;
-		       		
-		       		function processRequest(e) 
-		       		{
-		       			if (xhr.readyState == 4 && xhr.status == 200) 
-		       			{
-		       		       window.location = "BookingPage.html";
-		       		    }
-	       			}
-			 	}
-       		</script>
-		</form>
+		
 	</div>
 </div> <!-- Ending the Login content -->
 </div> <!-- Ending the Tab content -->

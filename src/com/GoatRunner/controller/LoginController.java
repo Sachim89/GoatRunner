@@ -20,7 +20,7 @@ public class LoginController {
 	@Path("/login")
 	@GET
 	public Response loginUser(@PathParam("userId") String studentId, @PathParam("password") String password) {
-
+		System.out.println("ENtered");
 		User user = new User();
 		try {
 			user = LoginService.login(studentId, password);
@@ -39,6 +39,7 @@ public class LoginController {
 			@QueryParam("address") String address, @QueryParam("favourite_location") String favourite_location,
 			@QueryParam("security_question") String security_question,@QueryParam("answer") String answer){
 		try {
+			System.out.println("Entered");
 			LoginService.signup(name, student_id, password,email_id, phone_number, address, favourite_location,security_question,answer);
 		} catch (GoatRunnerException e) {
 			// TODO Auto-generated catch block
