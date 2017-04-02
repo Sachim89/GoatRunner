@@ -32,17 +32,27 @@ h1, h2, h3, h4, h5, h6, .gr-slim, .gr-wide {
 	width: 100%
 }
 
-
 .gr-col.s12, .gr-half, .gr-third, .gr-twothird, .gr-threequarter,
 	.gr-quarter {
 	width: 99.99999%
 }
 
+@media ( min-width :601px) {
+	.gr-col.m3, .gr-quarter {
+		width: 24.99999%
+	}
+}
 
 @media ( min-width :993px) {
 	.gr-col.l3, .gr-quarter {
 		width: 24.99999%
 	}
+}
+
+.gr-row-padding, .gr-row-padding>.gr-half, .gr-row-padding>.gr-third,
+	.gr-row-padding>.gr-twothird, .gr-row-padding>.gr-threequarter,
+	.gr-row-padding>.gr-quarter, .gr-row-padding>.gr-col {
+	padding: 0 8px
 }
 
 .gr-content {
