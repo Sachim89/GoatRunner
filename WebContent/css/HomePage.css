@@ -6,13 +6,33 @@ body, html {
 	height: 100%;
 	line-height: 1.8;
 }
+input[type=text], input[type=number] {
+    width: 100%;
+    padding: 12px 50px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+    text-align: left;
+    size: auto;
+}
+
+button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+}
 
 .bgimg-1 {
 	background-position: center;
 	background-size: cover;
-	background-image: url("Logo.png");
 	min-height: 100%;
 	margin: auto;
+	background-image: url("images/Logo.png");
 }
 
 ul {
@@ -21,7 +41,7 @@ ul {
 	margin: 0;
 	padding: 0;
 	overflow: hidden;
-	background-color: #4CAF50;
+	background-color: black;
 	widht: 100%;
 }
 
@@ -40,3 +60,9 @@ li a {
 li a:hover {
 	background-color: #BFC9CA;
 }
+
+.container {
+    padding: 16px;
+    float: left;
+}
+
