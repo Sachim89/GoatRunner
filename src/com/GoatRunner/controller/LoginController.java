@@ -19,7 +19,7 @@ public class LoginController {
 
 	@Path("/login")
 	@GET
-	public Response loginUser(@PathParam("userId") String studentId, @PathParam("password") String password) {
+	public Response loginUser(@QueryParam("userId") String studentId, @QueryParam("password") String password) {
 		System.out.println("ENtered");
 		User user = new User();
 		try {
@@ -34,20 +34,11 @@ public class LoginController {
 
 	@Path("/signup")
 	@POST
-	public Response signUp(@QueryParam("name") String name, @QueryParam("student_id") String student_id,
-			@QueryParam("password") String password,@QueryParam("email_id") String email_id,@QueryParam("phone_number") String phone_number,
-			@QueryParam("address") String address, @QueryParam("favourite_location") String favourite_location,
-			@QueryParam("security_question") String security_question,@QueryParam("answer") String answer){
-		try {
+	public Response signUp( User user) {
+		
 			System.out.println("Entered");
-			LoginService.signup(name, student_id, password,email_id, phone_number, address, favourite_location,security_question,answer);
-		} catch (GoatRunnerException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+			//LoginService.signup(name, student_id, password,email_id, phone_number, address, favourite_location,security_question,answer);
+		
 		return Response.status(Status.OK).build();
 	}
 

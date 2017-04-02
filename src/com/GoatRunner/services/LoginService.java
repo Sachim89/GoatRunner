@@ -16,7 +16,7 @@ public class LoginService {
 		ConnectionService connection = new ConnectionService(); // class for
 																// connection
 		Connection con = connection.createConnection();
-		PreparedStatement st = con.prepareStatement("select * from Table where username=?");
+		PreparedStatement st = con.prepareStatement("select * from table where username=?");
 		st.setString(1, userid);
 
 		ResultSet rs = st.executeQuery();

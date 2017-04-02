@@ -13,7 +13,7 @@ function submitform() {
 
 	function processRequest(e) {
 		if (xhr.readyState == 4 && xhr.status == 200) {
-			window.location = "BookingPage.html";
+			window.location.href = "BookingPage.html";
 		}
 	}
 }

@@ -9,8 +9,8 @@ public class ConnectionService {
 
 		try {
 			Class.forName("oracle.jdbc.driver.OracleDriver");
-			Connection connection = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:SID", "username",
-					"password");
+			Connection connection = DriverManager.getConnection("jdbc:oracle:thin:@oracle.wpi.edu:1521:ORCL", "arlad",
+					"ARLAD");
 			return connection;
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block

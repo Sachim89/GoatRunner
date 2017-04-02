@@ -26,7 +26,7 @@ function submitform()
 			       		{
 			       			if (xhr.readyState == 4 && xhr.status == 200) 
 			       			{
-			       		       window.location = "LoginPage.html";
+			       		       window.location.href = "http://localhost:8080/GoatRunner/application/login";
 			       		    }
 		       			}
 				 	}
