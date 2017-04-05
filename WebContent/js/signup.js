@@ -6,6 +6,11 @@ function submitform()
 						var password = document.getElementById("Password").value;
 						var address = document.getElementById("Address").value;
 						var phone = document.getElementById("phone").value;
+						var quest;
+						document.getElementById("questions").addEventListener("change",function(){
+						quest = this.value;
+						});
+						var answer = document.getElementById("answer").value;	
 						
 						var xhr = new XMLHttpRequest();
 			      		xhr.open(form.method, form.action, true);
@@ -16,7 +21,9 @@ function submitform()
 			       						"email": email,
 			            			  	"password": password,
 			            			  	"address" : address,
-			            			  	"phone Number" : phone
+			            			  	"phone Number" : phone,
+			            			  	"question": quest,
+				            			"answer":answer	
 			       					};
 			       		xhr.send(JSON.stringify(j));
 			       		xhr.addEventListener("readystatechange", processRequest, false);

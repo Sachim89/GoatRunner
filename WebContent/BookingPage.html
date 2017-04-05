@@ -15,20 +15,17 @@
 </head>
 <body>
 
-<!-- Navigation Bar -->
-<div id="Navigation">
-	<ul>
-		<li><a class="home" href="HomePage.html">Home</a></li>
-		<li><a href="HomePage.html#about" class="about">About</a></li>
-		<li><a href="HomePage.html#contact" class="Team">Contact</a></li>
-		<li><a href="#logout" class="logout" onclick="Logout()">Logout</a></li>
-	</ul>
+<!-- Logout/ Logged in as -->
+<div style="float: right; font-style: italic; color: #4CAF50;"><span id="log"></span><a href = "HomePage.html" onclick="logout()">Logout</a>
 </div>
 	
 <!-- Display the map on page load -->
 <script type="text/javascript">
 if (navigator.geolocation) 
 	{
+		var x = document.cookie;
+		document.getElementById("log").innerHTML = "Logged in as: "+x+"  ";
+	
 		navigator.geolocation.getCurrentPosition(function(p) 
 		{
 			var LatLng = new google.maps.LatLng(p.coords.latitude, p.coords.longitude);
@@ -68,9 +65,7 @@ if (navigator.geolocation)
 	      	<button id="request" class="requestBtn">Request</button>
 	       	<button type="button" onclick="Locationfunction()" class="requestBtn">Use current location</button>
     	</div>
-    	
-    	 	
-    	
+  	
 	    <!-- Division to display the Google Maps -->
 		<div id="map"style="width: 600px; height: 400px; float: right;"></div>	
 		<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?&key=AIzaSyAT6aVkKBBF-TSTXrclwuDV9xQx8TUbMao&sensor=false"></script>
