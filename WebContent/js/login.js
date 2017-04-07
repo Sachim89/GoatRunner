@@ -1,8 +1,8 @@
 function submitform() {
 	var email = document.getElementById("userid").value;
 	var password = document.getElementById("password").value;
-	document.getElementById('message').innerHTML = studid;
-	document.cookie = studid;
+//	document.getElementById('message').innerHTML = studid;
+//	document.cookie = studid;
 	
 	var xhr = new XMLHttpRequest();
 	xhr.open("GET",

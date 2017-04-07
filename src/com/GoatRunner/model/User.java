@@ -1,6 +1,9 @@
 package com.GoatRunner.model;
 
 public class User {
+	/**
+	 * 
+	 */
 	private String name;
 	private String student_id;
 	private String password;

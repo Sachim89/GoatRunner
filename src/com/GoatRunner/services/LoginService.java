@@ -16,16 +16,23 @@ public class LoginService {
 		ConnectionService connection = new ConnectionService(); // class for
 																// connection
 		Connection con = connection.createConnection();
-		PreparedStatement st = con.prepareStatement("select * from table where username=?");
+		PreparedStatement st = con.prepareStatement("select * from passenger where studentid=?");
 		st.setString(1, userid);
 
 		ResultSet rs = st.executeQuery();
-		String checkUser = rs.getString(1);
-		String checkpwd = rs.getString(2);
+		String checkUser = "";
+		String checkpwd = "";
+		if (rs != null) {
+			while (rs.next()) {
+				checkUser = rs.getString(1);
+				checkpwd = rs.getString(2);
+			}
+		}
+
 		User user = new User();
 		// if user exists and password is correct
 		if (checkUser.equals(userid) && checkpwd.equals(password)) {
-			PreparedStatement st1 = con.prepareStatement("select * from Student where studentId=?");
+			PreparedStatement st1 = con.prepareStatement("SELECT * FROM PASSENGER WHERE STUDENTID = ?");
 			ResultSet resultSet = st1.executeQuery();
 			user.setAddress(rs.getString(1));
 			user.setName(rs.getString(2));
@@ -44,41 +51,40 @@ public class LoginService {
 		// con.close();
 	}
 
-	public static void signup(String name, String student_id, String password,String email_id, String phone_number, String address,
-			String favourite_location,String security_question, String answer) throws GoatRunnerException, SQLException {
+	public static void signup(User user) throws GoatRunnerException, SQLException {
 
 		ConnectionService connection = new ConnectionService(); // class for
 																// connection
 		Connection con = connection.createConnection();
-		PreparedStatement st = con.prepareStatement("select * from Table where username=?");
-		st.setString(1, student_id);
+		PreparedStatement st = con.prepareStatement("select * from passenger where studentId=?");
+		st.setString(1, user.getStudent_id());
 
 		ResultSet rs = st.executeQuery();
-		String checkUser = rs.getString(1);
+		String checkUser = "";
+		if (rs != null) {
 
-		// check if user exists
-		if (checkUser.equals(student_id)) {
-			throw new GoatRunnerException("User Already Exist");
+			if (rs.next() == true) {
+				throw new GoatRunnerException("User Already Exist");
+			} else {
+				// adding user to database
+				PreparedStatement st1 = con.prepareStatement(
+						"INSERT INTO PASSENGER (studentId,studentname,pwd,phone_number,address,favlocation,email_address)"
+								+ "VALUES (?,?,?,?,?,?,?)");
+				st1.setString(1, user.getStudent_id());
+				st1.setString(2, user.getName());
+				st1.setString(3, user.getPassword());
+				st1.setString(4, user.getPhone_number());
+				st1.setString(5, user.getAddress());
+				st1.setString(6, user.getFavourite_location());
+				st1.setString(7, user.getEmail_id());
+				st1.execute();
+				st1.close();
+				// creating a new user object
+
+			}
 		}
+
 		// if user doesn't exist add the user to database
-		else {
-			// adding user to database
-			PreparedStatement st1 = con.prepareStatement("INSERT INTO Table "
-					+ "VALUES (name, student_id, password, phone_number, address,favourite_location)");
-			st1.executeQuery();
-			st1.close();
-			// creating a new user object
-			User user = new User();
-			user.setAddress(address);
-			user.setEmail_id(email_id);
-			user.setFavourite_location(favourite_location);
-			user.setPassword(password);
-			user.setName(name);
-			user.setPhone_number(phone_number);
-			user.setStudent_id(student_id);
-			user.setSecurity_question(security_question);
-			user.setAnswer(answer);
-		}
 
 	}
 

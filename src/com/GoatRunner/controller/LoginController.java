@@ -2,11 +2,14 @@ package com.GoatRunner.controller;
 
 import java.sql.SQLException;
 
+import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
+import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
+import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
 
@@ -34,12 +37,19 @@ public class LoginController {
 
 	@Path("/signup")
 	@POST
+//	@Consumes({MediaType.APPLICATION_JSON})
 	public Response signUp( User user) {
 		
 			System.out.println("Entered");
-			//LoginService.signup(name, student_id, password,email_id, phone_number, address, favourite_location,security_question,answer);
-		
+		try {
+			LoginService.signup(user);
+		} catch (GoatRunnerException | SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		return Response.status(Status.OK).build();
 	}
+	
+	
 
 }
