@@ -12,12 +12,13 @@ import com.GoatRunner.model.User;
 
 public class LoginService {
 
-	public static User login(String userid, String password) throws GoatRunnerException, SQLException {
+	public static User login(int userid, String password) throws GoatRunnerException, SQLException {
 		ConnectionService connection = new ConnectionService(); // class for
 																// connection
 		Connection con = connection.createConnection();
 		PreparedStatement st = con.prepareStatement("select * from passenger where studentid=?");
-		st.setString(1, userid);
+		st.setInt(1, userid);
+		// st.setString(1, userid);
 
 		ResultSet rs = st.executeQuery();
 		String checkUser = "";
@@ -25,17 +26,24 @@ public class LoginService {
 		if (rs != null) {
 			while (rs.next()) {
 				checkUser = rs.getString(1);
-				checkpwd = rs.getString(2);
+				checkpwd = rs.getString(3);
 			}
 		}
 
 		User user = new User();
+
 		// if user exists and password is correct
-		if (checkUser.equals(userid) && checkpwd.equals(password)) {
+		if (checkUser.equalsIgnoreCase(Integer.toString(userid)) && checkpwd.equalsIgnoreCase(password)) {
 			PreparedStatement st1 = con.prepareStatement("SELECT * FROM PASSENGER WHERE STUDENTID = ?");
+			st1.setInt(1, userid);
 			ResultSet resultSet = st1.executeQuery();
-			user.setAddress(rs.getString(1));
-			user.setName(rs.getString(2));
+			if (resultSet != null) {
+				while (resultSet.next()) {
+					user.setAddress(resultSet.getString(1));
+					user.setName(resultSet.getString(2));
+				}
+			}
+
 			return user;
 
 			// successful

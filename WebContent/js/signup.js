@@ -13,28 +13,23 @@ function signup() {
 	});
 	var answer = document.getElementById("answer").value;
 
-	var xhr = new XMLHttpRequest();
-	xhr.open("POST",
-			"http://localhost:8080/GoatRunner/application/user/signup", true);
-	xhr.setRequestHeader('Content-Type', 'application/json');
 	var j = {
-		"name" : name,
-		"student_id" : studID,
-		"password" : password,
-		"phone_number" : phone,
-		"address" : address,
-		"favourite_location" : fav_location,
-		"email_id" : email,
-		"security_question" : quest,
-		"answer" : answer
-	};
-	xhr.send(JSON.stringify(j));
-	xhr.addEventListener("readystatechange", processRequest, false);
-	xhr.onreadystatechange = processRequest;
-
-	function processRequest(e) {
-		if (xhr.readyState == 4 && xhr.status == 200) {
-			window.location.href = "Login.html";
-		}
-	}
+			"name" : name,
+			"student_id" : studID,
+			"password" : password,
+			"phone_number" : phone,
+			"address" : address,
+			"favourite_location" : fav_location,
+			"email_id" : email,
+			"security_question" : quest,
+			"answer" : answer
+		};
+	$.ajax({
+		url: "http://localhost:8080/GoatRunner/application/user/signup",
+		type: "POST",
+		data : JSON.stringify(j),
+		contentType :"application/json",
+		success: function(resultData) {window.location.href = "BookingPage.html"}
+	});
+	
 }

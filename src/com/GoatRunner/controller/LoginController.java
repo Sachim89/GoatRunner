@@ -16,15 +16,20 @@ import javax.ws.rs.core.Response.Status;
 import com.GoatRunner.exception.GoatRunnerException;
 import com.GoatRunner.model.User;
 import com.GoatRunner.services.LoginService;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 @Path("/user")
 public class LoginController {
 
+	ObjectMapper mapper = new ObjectMapper();
+
 	@Path("/login")
 	@GET
-	public Response loginUser(@QueryParam("userId") String studentId, @QueryParam("password") String password) {
+	public Response loginUser(@QueryParam("userId") int studentId, @QueryParam("password") String password) {
 		System.out.println("ENtered");
 		User user = new User();
+		String responseObject = "";
 		try {
 			user = LoginService.login(studentId, password);
 		} catch (GoatRunnerException e) {
@@ -32,15 +37,22 @@ public class LoginController {
 		} catch (SQLException e) {
 			return Response.status(Status.INTERNAL_SERVER_ERROR).build();
 		}
-		return Response.status(Status.OK).entity(user).build();
+		try {
+			responseObject = mapper.writeValueAsString(user);
+		} catch (JsonProcessingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		return Response.status(Status.OK).entity(responseObject).build();
 	}
 
 	@Path("/signup")
 	@POST
-//	@Consumes({MediaType.APPLICATION_JSON})
-	public Response signUp( User user) {
-		
-			System.out.println("Entered");
+	@Consumes({ MediaType.APPLICATION_JSON })
+	public Response signUp(User user) {
+
+		System.out.println("Entered");
 		try {
 			LoginService.signup(user);
 		} catch (GoatRunnerException | SQLException e) {
@@ -49,7 +61,5 @@ public class LoginController {
 		}
 		return Response.status(Status.OK).build();
 	}
-	
-	
 
 }
