@@ -11,10 +11,11 @@ import com.GoatRunner.exception.GoatRunnerException;
 import com.GoatRunner.model.User;
 
 public class LoginService {
+	private static ConnectionService connection = new ConnectionService();
 
 	public static User login(int userid, String password) throws GoatRunnerException, SQLException {
-		ConnectionService connection = new ConnectionService(); // class for
-																// connection
+		// ConnectionService connection = new ConnectionService(); // class for
+		// connection
 		Connection con = connection.createConnection();
 		PreparedStatement st = con.prepareStatement("select * from passenger where studentid=?");
 		st.setInt(1, userid);
@@ -61,8 +62,8 @@ public class LoginService {
 
 	public static void signup(User user) throws GoatRunnerException, SQLException {
 
-		ConnectionService connection = new ConnectionService(); // class for
-																// connection
+		// ConnectionService connection = new ConnectionService(); // class for
+		// connection
 		Connection con = connection.createConnection();
 		PreparedStatement st = con.prepareStatement("select * from passenger where studentId=?");
 		st.setString(1, user.getStudent_id());
@@ -96,4 +97,24 @@ public class LoginService {
 
 	}
 
+	public static boolean userValidation(int userId) throws SQLException, GoatRunnerException {
+		Connection con = connection.createConnection();
+		PreparedStatement st;
+		
+			st = con.prepareStatement("select * from passenger where studentId=?");
+			st.setInt(1, userId);
+			ResultSet rs = st.executeQuery();
+			if (rs != null) {
+
+				if (rs.next() == true) {
+					return true;
+				}
+				else {
+					throw new GoatRunnerException("User does not exist");
+				}
+			}
+		
+
+		return false;
+	}
 }
