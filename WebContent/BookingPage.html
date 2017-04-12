@@ -14,99 +14,33 @@
 </style>
 </head>
 <body>
+<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?&key=AIzaSyAT6aVkKBBF-TSTXrclwuDV9xQx8TUbMao&sensor=false"></script>
+<script src="js/Booking.js"></script>
 
 <!-- Logout/ Logged in as -->
 <div style="float: right; font-style: italic; color: #4CAF50;"><span id="log"></span><a href = "HomePage.html" onclick="logout()">Logout</a>
 </div>
-	
-<!-- Display the map on page load -->
-<script type="text/javascript">
-if (navigator.geolocation) 
-	{
-		var x = document.cookie;
-		document.getElementById("log").innerHTML = "Logged in as: "+x+"  ";
-	
-		navigator.geolocation.getCurrentPosition(function(p) 
-		{
-			var LatLng = new google.maps.LatLng(p.coords.latitude, p.coords.longitude);
-			var mapOptions = 
-			{
-				center : LatLng,
-				zoom : 13,
-				mapTypeId : google.maps.MapTypeId.ROADMAP
-			};
-				
-			var map = new google.maps.Map(document.getElementById("map"), mapOptions);
-			google.maps.event.addListener(marker,"click",
-			function(e) {
-				var infoWindow = new google.maps.InfoWindow();
-				infoWindow.setContent(marker.title);
-				infoWindow.open(map, marker);
-				});
-			});
-		} else {
-			alert('Geo Location feature is not supported in this browser.');
-	}
-</script>
-
 <!-- Booking details -->
 <div id="Booking">
 <h3 align="center">BOOK-A-RIDE</h3>
-	<form action="/" method="post" onsubmit="return confirm('Confirm our request?');">
+	<form action="ConfirmedBooking.html" method="get" onsubmit="return confirm('Confirm our request?');">
 		<!-- Division to display the required fields -->
 		<div class="container">
     	 	<label><b>To</b></label>
-	      		<input type="text" placeholder="Enter to address" id="toAddress" required><br>
+	      		<input type="text" placeholder="Enter to address" name ="toAddress" id="toAddress" onkeydown="searchTo()" required><br>
 	      	<label><b>From</b></label>
-	      		<input type="text" placeholder="Enter from address" id="fromAddress" required><br>
+	      		<input type="text" placeholder="Enter from address" name = "fromAddress" onkeydown="searchFrom()" id="fromAddress" required><br>
 	      	<label><b>Number of Passengers</b></label>
 	      		<input type="number" placeholder="Enter number of passengers" id="numPass" required><br>
 	      
-	      	<button id="request" class="requestBtn">Request</button>
+	      	<button id="request" onclick="request()" class="requestBtn">Request</button>
+	       	<span id = "direction"></span>
 	       	<button type="button" onclick="Locationfunction()" class="requestBtn">Use current location</button>
     	</div>
   	
 	    <!-- Division to display the Google Maps -->
 		<div id="map"style="width: 600px; height: 400px; float: right;"></div>	
-		<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?&key=AIzaSyAT6aVkKBBF-TSTXrclwuDV9xQx8TUbMao&sensor=false"></script>
-		<script type="text/javascript">
-			function Locationfunction()
-			{
-				if (navigator.geolocation) 
-				{
-					navigator.geolocation.getCurrentPosition(function(p) 
-					{
-						var LatLng = new google.maps.LatLng(p.coords.latitude, p.coords.longitude);
-						var mapOptions = 
-						{
-							center : LatLng,
-							zoom : 13,
-							mapTypeId : google.maps.MapTypeId.ROADMAP
-						};
-						
-						var map = new google.maps.Map(document.getElementById("map"), mapOptions);
-						var marker = new google.maps.Marker(
-						{
-							position : LatLng,
-							map : map,
-							title : "<div style = 'height:60px;width:200px'><b>Your location:</b><br />Latitude: "
-							+ p.coords.latitude
-							+ "<br />Longitude: "
-							+ p.coords.longitude
-						});
-							
-						google.maps.event.addListener(marker,"click",
-						function(e) {
-							var infoWindow = new google.maps.InfoWindow();
-							infoWindow.setContent(marker.title);
-							infoWindow.open(map, marker);
-							});
-						});
-					} else {
-					alert('Geo Location feature is not supported in this browser.');
-					}
-				}
-			</script>
+		
 	</form>
 </div>
 </body>
