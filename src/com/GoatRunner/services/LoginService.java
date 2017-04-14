@@ -13,13 +13,14 @@ import com.GoatRunner.model.User;
 public class LoginService {
 	private static ConnectionService connection = new ConnectionService();
 
+
 	public static User login(int userid, String password) throws GoatRunnerException, SQLException {
-		// ConnectionService connection = new ConnectionService(); // class for
-		// connection
+		ConnectionService connection = new ConnectionService(); // class for connection
+
 		Connection con = connection.createConnection();
 		PreparedStatement st = con.prepareStatement("select * from passenger where studentid=?");
 		st.setInt(1, userid);
-		// st.setString(1, userid);
+		//st.setString(1, userid);
 
 		ResultSet rs = st.executeQuery();
 		String checkUser = "";
@@ -38,16 +39,22 @@ public class LoginService {
 			PreparedStatement st1 = con.prepareStatement("SELECT * FROM PASSENGER WHERE STUDENTID = ?");
 			st1.setInt(1, userid);
 			ResultSet resultSet = st1.executeQuery();
+
 			if (resultSet != null) {
 				while (resultSet.next()) {
-					user.setAddress(resultSet.getString(1));
-					user.setName(resultSet.getString(2));
+					user.setAddress(rs.getString(3));
+					user.setEmail_id(rs.getString(1));
+					user.setFavourite_location(rs.getString(4));
+					user.setName(rs.getString(1));
+					user.setPhone_number(rs.getString(5));
+					user.setStudent_id(rs.getInt(2));
+					user.setSecurity_question(rs.getString(6));
+					user.setAnswer(rs.getString(7));
 				}
 			}
-
 			return user;
-
 			// successful
+			
 		}
 		// to check if password is incorrect
 		if (checkUser.equals(userid) && !(checkpwd.equals(password))) {
@@ -66,7 +73,7 @@ public class LoginService {
 		// connection
 		Connection con = connection.createConnection();
 		PreparedStatement st = con.prepareStatement("select * from passenger where studentId=?");
-		st.setString(1, user.getStudent_id());
+		st.setInt(1, user.getStudent_id());
 
 		ResultSet rs = st.executeQuery();
 		String checkUser = "";
@@ -79,7 +86,7 @@ public class LoginService {
 				PreparedStatement st1 = con.prepareStatement(
 						"INSERT INTO PASSENGER (studentId,studentname,pwd,phone_number,address,favlocation,email_address)"
 								+ "VALUES (?,?,?,?,?,?,?)");
-				st1.setString(1, user.getStudent_id());
+				st1.setInt(1, user.getStudent_id());
 				st1.setString(2, user.getName());
 				st1.setString(3, user.getPassword());
 				st1.setString(4, user.getPhone_number());
