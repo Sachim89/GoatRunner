@@ -7,6 +7,7 @@
 <link href='http://fonts.googleapis.com/css?family=Titillium+Web:400,300,600' rel='stylesheet' type='text/css'>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
 <script	src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 </head>
 
 <body>
@@ -27,23 +28,28 @@
 <div>
 <div id="login">
 	<h1>Welcome Back!</h1>
-		
-			
 			<div class="field-wrap">
 				<label> Student ID<span class="req">*</span>
-				</label> <input type="number" id="userid" placeholder="Enter Student ID" autocomplete="off" />
+				</label> <input type="number" id="stud_id" placeholder="Enter Student ID" required />
 			</div>
+			<small><sup><span id="idrules">
+				<a href="#" style="color: red; text-decoration: underline;">?</a>
+			</span></sup></small>
 			
 			<div class="field-wrap">
 				<label> Password<span class="req">*</span>
-				</label> <input type="password" id="password" placeholder="Enter Password" required autocomplete="off" />
+				</label> <input type="password" id="password" placeholder="Enter Password" required />
 			</div><br> <br>
+			<small><sup><span id="passrules">
+				<a href="#" style="color: red; text-decoration: underline;">?</a>
+			</span></sup></small>
+			<br> <br>
 				
 			<p class="forgot">
-				<a href="#" style="color: red;">Forgot Password?</a>
+				<a href = "http://localhost:8080/GoatRunner/Forgot.html" style="color: red;">Forgot Password?</a>
 			</p>
 	
-			<button class="button button-block" onclick="submitform()">Log In</button>
+			<button class="button button-block" id = "loginButton">Log In</button>
 			
 		
 	</div>

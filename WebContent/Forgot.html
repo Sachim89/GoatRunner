@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Forgot Password Form</title>
+<link href="style.css" rel="stylesheet">
+</head>
+
+<body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<!-- Script for handling the input values to be sent to server in JSON format -->
+<script src="forgot.js"></script>
+
+<!-- Tab for displaying SignUp or Login -->
+<div class="form">
+<!-- Division for Login function -->
+<div>
+<div id="forgot">
+	<h2 align="center" style="color: #800000">UPDATE PASSWORD</h2>
+			<div class="field-wrap stud">
+				<label> Student ID<span class="req">*</span>
+				</label> <input type="number" id="stud_id" placeholder="Enter Student ID" required/>
+			</div>
+			<small><sup><span id="idrules">
+				<a href="#" style="color: red; text-decoration: underline;">?</a>
+			</span></sup></small>
+				
+			<div class="field-wrap pass">
+				<label> New Password<span class="req">*</span>
+				</label> <input type="password" id="password" placeholder="Enter Password" required/>
+			</div>
+			<small><sup><span id="passrules">
+				<a href="#" style="color: red; text-decoration: underline;">?</a>
+			</span></sup></small>
+			<br> <br>
+			
+		
+	</div>
+</div> <!-- Ending the Login content -->
+</div> <!-- Ending the Tab content -->
+</body>
+</html>

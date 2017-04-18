@@ -20,8 +20,8 @@
 			<li><a class="active">Home</a></li>
 			<li><a href="#about" class="about">About</a></li>
 			<li><a href="#contact" class="contact">Contact</a></li>
-			<li><a href="LoginPage.html" class="Login">Login</a></li>
-			<li><a href= "SignUp.html" class="SignUp">Sign Up</a></li>
+			<li><a href="http://localhost:8080/GoatRunner/LoginPage.html" class="Login">Login</a></li>
+			<li><a href= "http://localhost:8080/GoatRunner/SignUp.html" class="SignUp">Sign Up</a></li>
 		</ul>
 	</div>
 <div class="bgimg-1"></div>
@@ -56,21 +56,14 @@
 <!-- Contact -->
 <div id="contact">
 <h1 align="center">CONTACT US</h1>
-	<form action="/" method="post" onsubmit="return confirm('Do you really want to submit the form?');">
 		<!-- Division to display the required fields -->
-		<div class="container" style="margin-top:50px;margin-bottom:100px; margin-left:40px; width: 600px">
-    	 	<label><b>Student ID</b></label>
-	      		<input type="text" placeholder="Enter to Student ID" id="ID" required><br>
-	      	<label><b>Email</b></label>
-	      		<input type="text" placeholder="Enter the mail ID" id="email" required><br>
-	      	<label><b>Subject</b></label>
-	      		<input type="number" placeholder="Enter the Subject" id="subject" required><br>
-	        <label><b>Message</b></label>
-	      	<input type="text" placeholder="Enter the Message" id="message" required><br>
-	      
-	      	<button id="submit" class="requestBtn">Submit</button>
-	  	</div>
-
+		<pre style="font-family: fantasy; text-align:justify; margin-top: 40px; margin-left: 100px">
+		Worcester Polytechnic Institute,
+		100 Institute Rd, 
+		Worcester, 
+		MA 01609 
+		</pre>
+	<button id="submit" class="requestBtn" onclick="mailto()">Mail To</button>
 <div id="map" style="margin-top:70px;margin-bottom:100px; margin-right:40px; width: 600px; height: 400px; float: right;"></div>	
 <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?&key=AIzaSyAT6aVkKBBF-TSTXrclwuDV9xQx8TUbMao&sensor=false"></script>
 <script type="text/javascript">
@@ -85,8 +78,11 @@
 	    position: myLatLng,
 	    map: map,
 	  });
+	  function mailto()
+	  {
+		  window.location.href = "mailto:xyz@abc.com";
+	  }
 </script>
-</form>
 </div>
 </body>
 </html>

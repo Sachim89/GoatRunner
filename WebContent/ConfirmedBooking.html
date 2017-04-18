@@ -7,86 +7,36 @@
 <title>Goat Runner</title>
 </head>
 <body>
-	<script type="text/javascript"
-		src="http://maps.googleapis.com/maps/api/js?&key=AIzaSyAT6aVkKBBF-TSTXrclwuDV9xQx8TUbMao&sensor=false"></script>
-	<div style="float: right; font-style: italic; color: #4CAF50;">
-		<span id="log"></span><a href="HomePage.html" onclick="logout()">Logout</a>
-	</div>
+<div>
+	<a href="#"><img src='images/user.png' style="height: 40px; width: 40px;"> </a>
+</div>
+
+<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?&key=AIzaSyAT6aVkKBBF-TSTXrclwuDV9xQx8TUbMao&sensor=false"></script>
+<script src="js/ConfirmedBooking.js"></script>
+<div style="float: right;color: black;">
+	<span id="log"></span><a href="#" id="logout">Logout</a>
+</div>
 
 	<div id="Confirmed">
-		<h4 align="center">CONFIRMED BOOKING</h4>
-		<br>
-		<form action="/" method="post">
-			<div class="map" id="map"
-				style="width: 500px; height: 500px; float: right; margin-top: 50px;"></div>
+		<h1 align="center" style="font-family: sans-serif;">CONFIRMED BOOKING</h1>
+		<br><br>
+		<div id="panel"></div>
+	
+			<div class="map" id="map" style="width: 500px; height: 400px; float: right;"></div>
 			<div id="panel" style="width: 400px; height: 400px; float: left;"></div>
 			<div class="container">
-				<label><b>Driver Name</b></label> <input type="text" id="driverName"
-					required> <br> <label><b>Driver number</b></label> <input
-					type="number" id="driverNumber" required> <br> <label><b>Cab
-						number</b></label> <input type="text" id="cabNumber" required> <br>
+				<label><b>Booking ID</b></label> <input type="text" id="bookingID" required> <br>
+				<label><b>Driver Name</b></label> <input type="text" id="driverName" required> <br> 
+				<label><b>Driver number</b></label> <input	type="number" id="driverNumber" required> <br> 
+				<label><b>Cab number</b></label> <input type="text" id="cabNumber" required> <br>
+				<label><b>Estimated Rate</b></label> <input type="text" id="rate" required> <br>
 				<p id="count" class="button"></p>
 				<button type="button" id="cancel" class="cancel">Cancel</button>
-				<script type="text/javascript">
-					var time = setTimeout(disable, 8000);
-				//	var x = document.cookie;
-				//	document.getElementById("log").innerHTML = "Logged in as: "	+ x + "  ";
-
-					function disable() {
-						p = document.getElementById("count");
-						x = document.getElementById("cancel");
-						x.disabled = true;
-						p.disabled = true;
-						x.parentNode.removeChild(x);
-						p.parentNode.removeChild(p);
-					}
-
-					function getParams() {
-						var idx = document.URL.indexOf('?');
-						var params = new Array();
-						if (idx != -1) {
-							var pairs = document.URL.substring(idx + 1,
-									document.URL.length).split('&');
-							for (var i = 0; i < pairs.length; i++) {
-								nameVal = pairs[i].split('=');
-								params[nameVal[0]] = nameVal[1];
-							}
-						}
-						return params;
-					}
-					params = getParams();
-					TO = unescape(params["toAddress"]);
-					FROM = unescape(params["fromAddress"]);
-
-					var directionsService = new google.maps.DirectionsService();
-					var directionsDisplay = new google.maps.DirectionsRenderer();
-
-					var map = new google.maps.Map(document
-							.getElementById('map'), {
-						zoom : 13,
-						mapTypeId : google.maps.MapTypeId.ROADMAP
-					});
-
-					directionsDisplay.setMap(map);
-					directionsDisplay
-							.setPanel(document.getElementById('panel'));
-
-					var request = {
-						origin : TO,
-						destination : FROM,
-						travelMode : google.maps.DirectionsTravelMode.DRIVING
-					};
-
-					directionsService.route(request,
-							function(response, status) {
-								if (status == google.maps.DirectionsStatus.OK) {
-									directionsDisplay.setDirections(response);
-								}
-							});
-				</script>
+			<script type="text/javascript">
+				var x = localStorage.getItem("StudentID");
+				document.getElementById("log").innerHTML = "Logged in as: "+x+"  ";
+			</script>
 			</div>
-		</form>
 	</div>
-
 </body>
 </html>

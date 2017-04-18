@@ -9,6 +9,8 @@
 </head>
 
 <body>
+<script	src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="js/signup.js"></script>
 
 <!-- Navigate to Home Page -->
@@ -27,7 +29,9 @@
 <div>
 <div id="signup">
 	<h1>Sign Up for Free</h1>
-			
+	<span id="rules">
+	<a href="#" style="color: red; text-decoration: underline;">Check Rules</a>
+	</span>		
 				<div class="field-wrap">
 					<label> Student ID<span class="req">*</span></label>
 					<input type="number" id="StudentID" placeholder="Enter the Student ID" required autocomplete="off" />
@@ -40,7 +44,7 @@
 			
 				<div class="field-wrap">
 					<label> Email Address<span class="req">*</span></label> 
-					<input type="email" id="Email" placeholder="Enter Email ID" required autocomplete="off" />
+					<input type="email" id="Email" placeholder="joe@gmail.com" required autocomplete="off" />
 				</div>
 				
 				<div class="field-wrap">
@@ -77,15 +81,10 @@
 					<input type="text" id="answer" placeholder="Answer" required autocomplete="off" />
 				</div><br>
 				
-				<button type="submit" class="button button-block" onclick="signup()">Get Started</button>
-				
-				
-				
+				<button type="submit" class="button button-block" id="GetStarted">Get Started</button>		
 		
 	</div>
 </div><!-- End of SignUp content-->
 </div><!-- End of Tab content -->
-<script	src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
-
 </body>
 </html>

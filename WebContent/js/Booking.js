@@ -1,30 +1,135 @@
-//Display the map on page load
-if (navigator.geolocation) 
-	{
-		//var x = document.cookie;
-		//document.getElementById("log").innerHTML = "Logged in as: "+x+"  ";
+$(document).ready(function(){
+	//Validates the form before sending the requests
+	$("#request").click(function(){
+		validate();
+	});
 	
-		navigator.geolocation.getCurrentPosition(function(p) 
-		{
-			var LatLng = new google.maps.LatLng(p.coords.latitude, p.coords.longitude);
-			var mapOptions = 
+	//Informs the user to find the location in map
+	$("#toLocate").hover(function(){
+		$(this).html($('<span style="color:red;">Press enter in text box to locate in Map</span>'))
+	});
+	
+	//Displays the rules for password when mouse pointer is over ?
+	$("#fromLocate").hover(function(){
+		$(this).html($('<span style="color:red;">Press enter check the route</span>'))
+	});
+	
+	$("#logout").click(function(){
+		logout();
+	})
+
+});
+//Logout functionality
+function logout(){
+	if(confirm("Do you want to logout?")){
+		var id = localStorage.getItem("StudentID");
+		$.ajax({
+			url: "http://localhost:8080/GoatRunner/application/user/logout?userId="+id,
+			type: "GET",
+			contentType :"application/json",
+			success: function(resultData) 
 			{
-				center : LatLng,
-				zoom : 13,
-				mapTypeId : google.maps.MapTypeId.ROADMAP
-			};
-				
-			var map = new google.maps.Map(document.getElementById("map"), mapOptions);
-			google.maps.event.addListener(marker,"click",
-			function(e) {
-				var infoWindow = new google.maps.InfoWindow();
-				infoWindow.setContent(marker.title);
-				infoWindow.open(map, marker);
-				});
-			});
-		} else {
-			alert('Geo Location feature is not supported in this browser.');
+				window.location.href = "http://localhost:8080/GoatRunner/HomePage.html"
+			}
+		});
 	}
+	else{
+		window.location.href = "http://localhost:8080/GoatRunner/BookingPage.html"
+	}
+//	localStorage.removeItem("StudentID");
+}
+
+//Validate the given input data
+function validate()
+{
+	callDistance();
+	var isValid = true;
+	var to = $("#toAddress").val();
+	var from = $("#fromAddress").val();
+	var num = $("#numPass").val();
+	
+	//Check the To and From address
+	$('input').filter('[required]').each(function(){
+		if($(this).val() == ""){
+		$('input').css("border","2px solid red");
+		$('input').css("box-shadow","0 0 3px red");
+		isValid = false;
+		return false;
+		}
+	});
+
+	if(!isValid){alert("Some fields are missing");}
+	
+	//Send the valid data to Service layer
+	if(isValid){
+		//Request the cab
+		if(confirm("Confirm Booking?")){
+			
+			window.location.href = "http://localhost:8080/GoatProject/Confirmed/ConfirmedBooking.html"
+			//Send the User ID to service layer
+			var distance; var duration;
+			var x = localStorage.getItem("StudentID");
+			var to = document.getElementById("toAddress").value;
+			var from = document.getElementById("fromAddress").value;
+			var numPass = document.getElementById("numPass").value;
+				
+			//Store details in local storage for further processing
+			localStorage.setItem("toAddress", to);
+			localStorage.setItem("fromAddress", from);
+			localStorage.setItem("numPass", numPass);
+				
+			var j = 
+			{
+				"student_id" : x,
+				"toAddress": to,
+				"fromAddress": from,
+				"numberPass": numPass,
+				"distance": distance,
+				"duration": duration
+			}
+			
+			$.ajax({
+				url: "http://localhost:8080/GoatRunner/application/user/booking",
+				type: "POST",
+				data : JSON.stringify(j),
+				contentType :"application/json",
+				success: function(resultData) 
+				{
+					window.location.href = "http://localhost:8080/GoatRunner/ConfirmedBooking.html"
+				}
+			});
+		}
+		else
+		{
+			alert("You have cancelled the booking");
+	
+			var x = localStorage.getItem("StudentID");
+			var to = document.getElementById("toAddress").value;
+			var from = document.getElementById("fromAddress").value;
+			var numPass = document.getElementById("numPass").value;
+				
+			var j = 
+			{
+				"student_id" : x,
+				"toAddress": to,
+				"fromAddress": from,
+				"numberPass": numPass,
+				"cancel" : true
+			}
+			
+			$.ajax({
+				url: "http://localhost:8080/GoatRunner/application/user/bookingCancel",
+				type: "GET",
+				data : JSON.stringify(j),
+				contentType :"application/json",
+				success: function(resultData) 
+				{
+					window.location.href = "http://localhost:8080/GoatRunner/BookingPage.html"
+				}
+			});
+		}
+	}
+}
 
 //Get the current location id "Use current location" is requested
 function Locationfunction() 
@@ -79,8 +184,8 @@ function direction()
      directionsDisplay.setPanel(document.getElementById('panel'));
 
      var request = {
-       origin: document.getElementById("toAddress").value, 
-       destination:document.getElementById("fromAddress").value,
+       origin: document.getElementById("fromAddress").value, 
+       destination:document.getElementById("toAddress").value,
        travelMode: google.maps.DirectionsTravelMode.DRIVING
      };
 
@@ -152,70 +257,83 @@ function searchFrom()
 			infoWindow.open(map,markerFrom);
 		});				
 		});
+		
+		var to = document.getElementById("toAddress").value;
+		var from = document.getElementById("fromAddress").value;
+		var numPass = document.getElementById("numPass").value;
+		
+		if(to != "" && from != ""){
 		document.getElementById("direction").innerHTML = 
-			'<a href="#" onclick="direction()">Check Route</a>'
+			'<a href="#" onclick="direction()">Check Route</a>';
+		}
+		else{
+			alert("Some fields missing");
+		}
 	}
 }
+//Function to send the service layer the distance and duration between the origin and destination
+function callDistance(){
 
-//Get the current location id "Use current location" is requested
-function Locationfunction() 
-{
-if (navigator.geolocation) 
-{
-	navigator.geolocation.getCurrentPosition(function(p) {
-	var LatLng = new google.maps.LatLng(p.coords.latitude,p.coords.longitude);
-	var mapOptions = {
-	center : LatLng,
-	zoom : 13,
-	mapTypeId : google.maps.MapTypeId.ROADMAP
-	};
-	var geocoder = geocoder = new google.maps.Geocoder();
-	geocoder.geocode({'latLng' : LatLng },
-		function(results, status) {
-		if (status == google.maps.GeocoderStatus.OK) {
-		if (results[0]) {
-			document.getElementById("fromAddress").value = results[0].formatted_address;
-		}
-		}
-	});
-	var map = new google.maps.Map(document.getElementById("map"), mapOptions);
-	var marker = new google.maps.Marker({
-			position : LatLng,
-			map : map,
-	});
-
-	google.maps.event.addListener(marker,"click",function(e) 
-	{
-		var infoWindow = new google.maps.InfoWindow();
-		infoWindow.open(map,marker);
-	});
-	});
-} else {
-		alert('Geo Location feature is not supported in this browser.');
-	}
-}
-
-//Request the cab
-function request()
-{
-	console.log("Request created");
-	var to = document.getElementById("toAddress").value;
+	var lat_from, lng_from;
 	var from = document.getElementById("fromAddress").value;
-	var numPass = document.getElementById("numPass").value;
+	var geocoder = geocoder = new google.maps.Geocoder();
+	geocoder.geocode({'address' : from}, function(results, status) {
+		if (status == google.maps.GeocoderStatus.OK) {
+			lat_from = results[0].geometry.location.lat();
+			lng_from = results[0].geometry.location.lng();
+		}
+	
+	var lat_to, lng_to;
+	var to = document.getElementById("toAddress").value;
+	var geocoder = geocoder = new google.maps.Geocoder();
+	geocoder.geocode({'address' : to}, function(results, status){
+		if (status == google.maps.GeocoderStatus.OK) {
+			lat_to = results[0].geometry.location.lat();
+			lng_to = results[0].geometry.location.lng();
+		}
 
+	var origin = new google.maps.LatLng(lat_to, lng_to);
+	var destination = new google.maps.LatLng(lat_from, lng_from);
 	
-	var j = 
-	{
-		"toAddress": to,
-		"fromAddress": from,
-		"numberPass": numPass
-	}
-	
-	$.ajax({
-		url: "http://localhost:8080/GoatRunner/application/user/booking",
-		type: "POST",
-		data : JSON.stringify(j),
-		contentType :"application/json",
-		success: function(resultData) {console.log("Entered")/*window.location.href = "ConfirmedBooking.html"*/}
+	var service = new google.maps.DistanceMatrixService();
+	    service.getDistanceMatrix(
+	      {
+	        origins: [origin],
+	        destinations: [destination],
+	        travelMode: google.maps.TravelMode.DRIVING,
+	        unitSystem: google.maps.UnitSystem.METRIC,
+	        avoidHighways: false,
+	        avoidTolls: false
+	      }, 
+	      function callback(response, status) {
+	    	  if (status != google.maps.DistanceMatrixStatus.OK) {
+	    		    alert('Error was: ' + status);
+	    		  } else {
+	    		    var origins = response.originAddresses;
+	    		    var destinations = response.destinationAddresses;
+	    		    var distance = response.rows[0].elements[0].distance.text;
+	    		    var duration = response.rows[0].elements[0].duration.text;
+	    		    
+	    		    var j = 
+	    			{
+	    				"origin": origins,
+	    				"destination": destinations,
+	    				"distance": distance,
+	    				"duration": duration
+	    			}
+	    			
+	    			$.ajax({
+	    				url: "http://localhost:8080/GoatRunner/application/user/distance",
+	    				type: "GET",
+	    				data : JSON.stringify(j),
+	    				contentType :"application/json",
+	    				success: function(resultData) 
+	    				{
+	    					window.location.href = "http://localhost:8080/GoatRunner/BookingPage.html"
+	    				}
+	    			});
+	    		  }
+	    	  });
+		});
 	});
 }

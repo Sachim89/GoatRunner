@@ -1,5 +1,6 @@
 $(document).ready(function () {
-	$("#loginButton").click(function(){
+	//Validate the form before sedning update request
+	$("#UpdateButton").click(function(){
 		validate();
 	});
 	
@@ -12,16 +13,13 @@ $(document).ready(function () {
 	$("#passrules").hover(function(){
 		$(this).html($('<span style="color:red;">Password should be minimum 6 characters</span>'))
 	});
-	
+
 });
 
 function validate()
 {
 	var id = $("#stud_id").val();
 	var password = $("#password").val();
-	localStorage.setItem("StudentID",id);
-	
-	//Check the Password and Student ID
 	if(id == "" && password == "")
 	{
 		$('input[type="number"]').css("border","2px solid red");
@@ -57,21 +55,20 @@ function validate()
 				alert("Student ID should be 9 digits");
 			}
 	}
-	
-	//Send the valid data to Service layer
 	if(password.length >= 6 && id.length == 9){
-		var studentId = parseInt(document.getElementById("stud_id").value);
-		var password = document.getElementById("password").value;
-		localStorage.setItem("StudentID",studentId);
-
-	$.ajax({
-		url : "http://localhost:8080/GoatRunner/application/user/login?userId="
-				+ studentId + "&password=" + password,
-		type : "GET",
-		contentType :"application/json",
-		success : function(resultData) {
-			window.location.href = "http://localhost:8080/GoatRunner/BookingPage.html"
-		}
-	});
+		var studentId = document.getElementById("stud_id").value;
+		var Newpassword = document.getElementById("password").value;
+		
+		$.ajax({
+			url : "http://localhost:8080/GoatRunner/application/user/login?userId="
+					+ studentId + "&password=" + Newpassword,
+			type : "POST",
+			contentType :"application/json",
+			success : function(resultData) {
+				window.location.href = "http://localhost:8080/GoatRunner/LoginPage.html";
+			}
+		});
+		
 	}
 }
+
