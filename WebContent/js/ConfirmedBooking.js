@@ -72,7 +72,7 @@ $(document).ready(function(){
 
 //Logout functionality
 function logout(){
-	if(!confirm("Do you want to logout?")){
+	if(confirm("Do you want to logout?")){
 		var id = localStorage.getItem("StudentID");
 			
 		$.ajax({
@@ -82,12 +82,12 @@ function logout(){
 			contentType :"application/json",
 			success: function(resultData) 
 			{
-				window.location.href = "http://localhost:8080/GoatRunner/ConfirmedBooking.html"
+				window.location.href = "http://localhost:8080/GoatRunner/HomePage.html"
 			}
 		});
 	}
 	else{
-		window.location.href = "http://localhost:8080/GoatRunner/HomePage.html"
+		window.location.href = "http://localhost:8080/GoatRunner/ConfirmedBooking.html"
 	}
 //	localStorage.removeItem("StudentID");
 }
