@@ -12,8 +12,10 @@ public class BookingOtherService {
 	public static void cancel(BookingDetails book) throws GoatRunnerException, SQLException {
 		ConnectionService connection = new ConnectionService();
 		Connection con = connection.createConnection();
+
 		PreparedStatement st = con.prepareStatement("UPDAPTE BOOKING SET cancel =1 where bookingId=?");
 		st.setInt(1, book.getBookingId());
+
 		st.executeQuery();
 		st.close();
 	}
@@ -22,8 +24,10 @@ public class BookingOtherService {
 	public static void complete(BookingDetails book) throws GoatRunnerException, SQLException {
 		ConnectionService connection = new ConnectionService();
 		Connection con = connection.createConnection();
-		PreparedStatement st = con.prepareStatement("UPDAPTE BOOKING SET complete =1 where bookingId=?");
+
+		PreparedStatement st = con.prepareStatement("UPDATE BOOKING SET complete =1 where bookingId=?");
 		st.setInt(1, book.getBookingId());
+
 		st.executeQuery();
 		st.close();
 	}
