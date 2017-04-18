@@ -3,42 +3,51 @@ package com.GoatRunner.controller;
 import java.sql.SQLException;
 
 import javax.ws.rs.Consumes;
-import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
 
 import com.GoatRunner.exception.GoatRunnerException;
-import com.GoatRunner.model.Booking;
+import com.GoatRunner.model.BookingDetails;
 import com.GoatRunner.services.BookingOtherService;
+import com.GoatRunner.services.BookingService;
 
-
-@Path("/booking")
+/**
+ * This class handles booking requests for booking and cancellation 
+ * @author Apoorva
+ *
+ */
+@Path("/ride")
 public class BookingController {
-	@Path("/book")
-	@GET
-	public Response bookingARide(@PathParam("studentId") String studentId, @PathParam("from") String from,
-			@PathParam("to") String to,@PathParam("distance") Float distance,
-			@PathParam("no_of_passengers") int no_of_passengers) {
 
-		Booking booking = new Booking();
-		//try {
-			//booking = BookingService.book(studentId, from,to,distance,no_of_passengers);
-		/*} catch (GoatRunnerException e) {
-			return Response.status(Status.BAD_REQUEST).build();
+	/**
+	 * 
+	 * @param booking
+	 * @return
+	 */
+	@Path("/book")
+	@POST
+	@Consumes({ MediaType.APPLICATION_JSON })
+	public Response bookARide(BookingDetails bookingDetails) {
+		System.out.println("Entered book");
+		try {
+			BookingService.book(bookingDetails);
+		} catch (GoatRunnerException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		} catch (SQLException e) {
-			return Response.status(Status.INTERNAL_SERVER_ERROR).build();
-		}*/
-		return Response.status(Status.OK).entity(booking).build();
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return Response.status(Status.OK).entity(null).build();
 	}
 
 	@Path("/cancel")
 	@POST
 	@Consumes({ MediaType.APPLICATION_JSON })
-	public Response cancellingARide(Booking book ) {
+	public Response cancellingARide(BookingDetails book ) {
 		
 		System.out.println("Entered");
 		try {
@@ -53,7 +62,7 @@ public class BookingController {
 	@Path("/complete")
 	@POST
 	@Consumes({ MediaType.APPLICATION_JSON })
-	public Response completingARide(Booking book ) {
+	public Response completingARide(BookingDetails book ) {
 		
 		System.out.println("Entered");
 		try {
@@ -67,4 +76,5 @@ public class BookingController {
 
 		
 	
+
 }

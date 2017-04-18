@@ -198,9 +198,11 @@ if (navigator.geolocation)
 //Request the cab
 function request()
 {
+	console.log("Request created");
 	var to = document.getElementById("toAddress").value;
 	var from = document.getElementById("fromAddress").value;
 	var numPass = document.getElementById("numPass").value;
+
 	
 	var j = 
 	{
@@ -214,6 +216,6 @@ function request()
 		type: "POST",
 		data : JSON.stringify(j),
 		contentType :"application/json",
-		success: function(resultData) {window.location.href = "ConfirmedBooking.html"}
+		success: function(resultData) {console.log("Entered")/*window.location.href = "ConfirmedBooking.html"*/}
 	});
 }
