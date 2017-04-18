@@ -11,7 +11,7 @@ public class User implements Serializable{
 	 * 
 	 */
 	private String name;
-	private String student_id;
+	private int student_id;
 	private String password;
 	private String phone_number;
 	private String address;
@@ -29,10 +29,10 @@ public class User implements Serializable{
 		public void setName(String name) {
 			this.name = name;
 		}
-		public String getStudent_id() {
+		public int getStudent_id() {
 			return student_id;
 		}
-		public void setStudent_id(String student_id) {
+		public void setStudent_id(int student_id) {
 			this.student_id = student_id;
 		}
 		public String getPassword() {

@@ -5,9 +5,7 @@ public class Driver {
 	private int driver_id;
 	private String phone_number;
 	
-	 public Driver(String name){
-			this.name = name;
-	 }
+	 
 
 	public String getName() {
 		return name;

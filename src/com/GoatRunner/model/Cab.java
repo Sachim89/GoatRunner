@@ -1,12 +1,13 @@
 package com.GoatRunner.model;
 
 public class Cab {
-	private String cab_id;
+	private int cab_id;
 	private int current_capacity;
-	public String getCab_id() {
+	
+	public int getCab_id() {
 		return cab_id;
 	}
-	public void setCab_id(String cab_id) {
+	public void setCab_id(int cab_id) {
 		this.cab_id = cab_id;
 	}
 	public int getCurrent_capacity() {
