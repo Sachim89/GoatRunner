@@ -47,11 +47,15 @@ public class BookingController {
 	@Path("/cancel")
 	@POST
 	@Consumes({ MediaType.APPLICATION_JSON })
+<<<<<<< HEAD
 	public Response cancellingARide(BookingDetails book ) {
+=======
+	public Response cancellingARide(@PathParam("bookingId") Integer bookingId ) {
+>>>>>>> cancel and confirm booking
 		
 		System.out.println("Entered");
 		try {
-			BookingOtherService.cancel(book);
+			BookingOtherService.cancel(bookingId);
 		} catch (GoatRunnerException | SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -62,11 +66,15 @@ public class BookingController {
 	@Path("/complete")
 	@POST
 	@Consumes({ MediaType.APPLICATION_JSON })
+<<<<<<< HEAD
 	public Response completingARide(BookingDetails book ) {
+=======
+	public Response completingARide(@PathParam("bookingId") Integer bookingId ) {
+>>>>>>> cancel and confirm booking
 		
 		System.out.println("Entered");
 		try {
-			BookingOtherService.complete(book);
+			BookingOtherService.complete(bookingId);
 		} catch (GoatRunnerException | SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
