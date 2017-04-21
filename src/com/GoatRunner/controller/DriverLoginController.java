@@ -14,9 +14,10 @@ import javax.ws.rs.core.Response.Status;
 import com.GoatRunner.exception.GoatRunnerException;
 import com.GoatRunner.model.Driver;
 import com.GoatRunner.services.DriverLoginService;
-import com.GoatRunner.services.LoginService;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+
+
 @Path("/driver")
 public class DriverLoginController {
 	

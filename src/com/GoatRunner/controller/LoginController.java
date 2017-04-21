@@ -19,6 +19,7 @@ import com.GoatRunner.model.User;
 import com.GoatRunner.services.LoginService;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.google.gson.Gson;
 
 @Path("/user")
 public class LoginController {
@@ -56,15 +57,16 @@ public class LoginController {
 	@Path("/signup")
 	@POST
 	@Consumes({ MediaType.APPLICATION_JSON })
-	public Response signUp(User user) {
-
-		System.out.println("Entered");
+	public Response signUp(String userString) {
+		Gson g = new Gson();
+		User user = g.fromJson(userString, User.class);
+		/*System.out.println("Entered");
 		try {
 			LoginService.signup(user);
 		} catch (GoatRunnerException | SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
+		}*/
 		return Response.status(Status.OK).build();
 	}
 

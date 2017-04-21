@@ -5,22 +5,35 @@ import java.sql.SQLException;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
+import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import com.GoatRunner.exception.GoatRunnerException;
 import com.GoatRunner.model.BookingDetails;
 import com.GoatRunner.services.BookingOtherService;
 import com.GoatRunner.services.BookingService;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.google.gson.Gson;
+
+import jdk.nashorn.internal.parser.JSONParser;
 
 /**
- * This class handles booking requests for booking and cancellation 
+ * This class handles booking requests for booking and cancellation
+ * 
  * @author Apoorva
  *
  */
 @Path("/ride")
 public class BookingController {
+	
+	ObjectMapper mapper = new ObjectMapper();
 
 	/**
 	 * 
@@ -30,29 +43,35 @@ public class BookingController {
 	@Path("/book")
 	@POST
 	@Consumes({ MediaType.APPLICATION_JSON })
-	public Response bookARide(BookingDetails bookingDetails) {
+	@Produces({ MediaType.APPLICATION_JSON })
+	public Response bookARide(String bookingDetailsString) {
 		System.out.println("Entered book");
+		String responseObject = "";
+		BookingDetails bookingDetails = new BookingDetails();
 		try {
-			BookingService.book(bookingDetails);
+
+			JSONObject bookingRequestDetails = new JSONObject(bookingDetailsString);
+			bookingDetails = BookingService.book(bookingRequestDetails);
+			responseObject = mapper.writeValueAsString(bookingDetails);
 		} catch (GoatRunnerException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		} catch (SQLException e) {
+		} catch (JSONException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (JsonProcessingException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return Response.status(Status.OK).entity(null).build();
+		return Response.status(Status.OK).entity(responseObject).build();
 	}
 
 	@Path("/cancel")
 	@POST
 	@Consumes({ MediaType.APPLICATION_JSON })
-<<<<<<< HEAD
-	public Response cancellingARide(BookingDetails book ) {
-=======
-	public Response cancellingARide(@PathParam("bookingId") Integer bookingId ) {
->>>>>>> cancel and confirm booking
-		
+
+	public Response cancellingARide(@PathParam("bookingId") Integer bookingId) {
+
 		System.out.println("Entered");
 		try {
 			BookingOtherService.cancel(bookingId);
@@ -62,16 +81,12 @@ public class BookingController {
 		}
 		return Response.status(Status.OK).build();
 	}
-	
+
 	@Path("/complete")
 	@POST
 	@Consumes({ MediaType.APPLICATION_JSON })
-<<<<<<< HEAD
-	public Response completingARide(BookingDetails book ) {
-=======
-	public Response completingARide(@PathParam("bookingId") Integer bookingId ) {
->>>>>>> cancel and confirm booking
-		
+	public Response completingARide(@PathParam("bookingId") Integer bookingId) {
+
 		System.out.println("Entered");
 		try {
 			BookingOtherService.complete(bookingId);
@@ -81,8 +96,5 @@ public class BookingController {
 		}
 		return Response.status(Status.OK).build();
 	}
-
-		
-	
 
 }

@@ -1,27 +1,36 @@
 package com.GoatRunner.model;
 
-public class BookingDetails {
-	
+import java.io.Serializable;
+
+public class BookingDetails implements Serializable {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -7191278986779747863L;
+
 	private int bookingId;
-	
+
 	private int cabId;
-	
+
 	private int driverId;
 	
+	private String driverName;
+
 	private int studentId;
-	
+
 	private int distance;
-	
+
 	private String destination;
-	
+
 	private String source;
-	
+
 	private int notOfPassengers;
-	
+
 	private String estimatedTime;
 
 	
-	
+
 	public int getBookingId() {
 		return bookingId;
 	}
@@ -93,5 +102,15 @@ public class BookingDetails {
 	public void setEstimatedTime(String estimatedTime) {
 		this.estimatedTime = estimatedTime;
 	}
+
+	public String getDriverName() {
+		return driverName;
+	}
+
+	public void setDriverName(String driverName) {
+		this.driverName = driverName;
+	}
+
+	
 
 }

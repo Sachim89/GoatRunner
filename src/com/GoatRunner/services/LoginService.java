@@ -5,7 +5,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import javax.ws.rs.Path;
 
 import com.GoatRunner.exception.GoatRunnerException;
 import com.GoatRunner.model.User;

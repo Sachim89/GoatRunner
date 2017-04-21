@@ -17,16 +17,16 @@ public class CabTest {
 	@Test
 	public void testSetCabId() {
 		Cab c = new Cab();
-		c.setCab_id(123);
-		assertEquals(c.getCab_id(), 123);
+		c.setCabno(123);
+		assertEquals(c.getCabno(), 123);
 	}
 	
 	/**Test to verify the functionalities for getting a cab id*/
 	@Test
 	public void testGetCabId() {
 		Cab c = new Cab();
-		c.setCab_id(123);
-		int result= c.getCab_id();
+		c.setCabno(123);
+		int result= c.getCabno();
 		assertEquals(result, 123);
 	}
 	
