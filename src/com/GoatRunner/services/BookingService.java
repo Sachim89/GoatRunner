@@ -4,9 +4,10 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.Time;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
@@ -38,6 +39,11 @@ public class BookingService {
 			int cabNO = (int) optimalCab.keySet().toArray()[0];
 			preparedStatement.setInt(1, cabNO);
 
+			Date date = new Date();
+			long timestamp = date.getTime();
+			Time time = new Time(timestamp);
+			java.sql.Date date1 = new java.sql.Date(timestamp);
+			java.sql.Timestamp sqlTimestamp = new java.sql.Timestamp(timestamp);
 			int driverId = 0;
 
 			int distance = LocationUtil.getDistance(bookingDetails.getDouble("sourceLatitude"),
@@ -48,6 +54,12 @@ public class BookingService {
 			details.setDestination(bookingDetails.getString("destination"));
 			details.setSource(bookingDetails.getString("source"));
 			details.setCabId(cabNO);
+			details.setBookingDate(date1);
+			details.setBookingTime(sqlTimestamp);
+			details.setSourceLatitude(bookingDetails.getDouble("sourceLatitude"));
+			details.setSourceLongitude(bookingDetails.getDouble("sourceLongitude"));
+			details.setDestinationLatitude(bookingDetails.getDouble("destinationLatitude"));
+			details.setDestinationLongitude(bookingDetails.getDouble("destinationLongitude"));
 			details.setNoofPassenges(bookingDetails.getInt("noOfPassengers"));
 			ResultSet resultSet = preparedStatement.executeQuery();
 			if (resultSet != null) {
@@ -74,9 +86,10 @@ public class BookingService {
 			 */
 			int bookingId = 0;
 			String key[] = { "bookingid" };
+
 			preparedStatement = conn.prepareStatement(
-					"INSERT INTO BOOKINGDETAILS (cabno,driverid,studentid,distance,toplace,fromplace,noofpassengers)"
-							+ "VALUES (?,?,?,?,?,?,?)",
+					"INSERT INTO BOOKINGDETAILS (cabno,driverid,studentid,distance,toplace,fromplace,noofpassengers,BOOKINGTIME,BOOKINGDATE,SOURCELATITUDE,SOURCELONGITUDE,DESTINATIONLATITUDE,DESTINATIONLONGITUDE)"
+							+ "VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)",
 					key);
 			preparedStatement.setInt(1, details.getCabId());
 			preparedStatement.setInt(2, details.getDriverId());
@@ -85,6 +98,12 @@ public class BookingService {
 			preparedStatement.setString(5, details.getDestination());
 			preparedStatement.setString(6, details.getSource());
 			preparedStatement.setInt(7, details.getNoofPassenges());
+			preparedStatement.setTimestamp(8, details.getBookingTime());
+			preparedStatement.setDate(9, details.getBookingDate());
+			preparedStatement.setDouble(10, details.getSourceLatitude());
+			preparedStatement.setDouble(11, details.getSourceLongitude());
+			preparedStatement.setDouble(12, details.getDestinationLatitude());
+			preparedStatement.setDouble(13, details.getDestinationLongitude());
 			preparedStatement.executeUpdate();
 			ResultSet rs = preparedStatement.getGeneratedKeys();
 			if (rs.next()) {

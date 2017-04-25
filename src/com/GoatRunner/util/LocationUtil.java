@@ -1,8 +1,5 @@
 package com.GoatRunner.util;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.client.Invocation;
@@ -10,11 +7,8 @@ import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
-import com.google.gson.JsonArray;
 
 //Class which uses the Google API to calculate distance and estimated time
 public class LocationUtil {

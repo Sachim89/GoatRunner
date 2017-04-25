@@ -1,6 +1,9 @@
 package com.GoatRunner.model;
 
 import java.io.Serializable;
+import java.sql.Date;
+import java.sql.Time;
+import java.sql.Timestamp;
 
 public class BookingDetails implements Serializable {
 
@@ -14,7 +17,7 @@ public class BookingDetails implements Serializable {
 	private int cabId;
 
 	private int driverId;
-	
+
 	private String driverName;
 
 	private int studentId;
@@ -29,7 +32,17 @@ public class BookingDetails implements Serializable {
 
 	private String estimatedTime;
 
-	
+	private Timestamp bookingTime;
+
+	private Date bookingDate;
+
+	private double sourceLatitude;
+
+	private double sourceLongitude;
+
+	private double destinationLatitude;
+
+	private double destinationLongitude;
 
 	public int getBookingId() {
 		return bookingId;
@@ -111,6 +124,52 @@ public class BookingDetails implements Serializable {
 		this.driverName = driverName;
 	}
 
-	
+	public Timestamp getBookingTime() {
+		return bookingTime;
+	}
+
+	public void setBookingTime(Timestamp bookingTime) {
+		this.bookingTime = bookingTime;
+	}
+
+	public Date getBookingDate() {
+		return bookingDate;
+	}
+
+	public void setBookingDate(Date bookingDate) {
+		this.bookingDate = bookingDate;
+	}
+
+	public double getSourceLatitude() {
+		return sourceLatitude;
+	}
+
+	public void setSourceLatitude(double sourceLatitude) {
+		this.sourceLatitude = sourceLatitude;
+	}
+
+	public double getSourceLongitude() {
+		return sourceLongitude;
+	}
+
+	public void setSourceLongitude(double sourceLongitude) {
+		this.sourceLongitude = sourceLongitude;
+	}
+
+	public double getDestinationLatitude() {
+		return destinationLatitude;
+	}
+
+	public void setDestinationLatitude(double destinationLatitude) {
+		this.destinationLatitude = destinationLatitude;
+	}
+
+	public double getDestinationLongitude() {
+		return destinationLongitude;
+	}
+
+	public void setDestinationLongitude(double destinationLongitude) {
+		this.destinationLongitude = destinationLongitude;
+	}
 
 }
