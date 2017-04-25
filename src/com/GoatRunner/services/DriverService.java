@@ -13,7 +13,7 @@ import com.GoatRunner.model.CurrentRides;
 import com.GoatRunner.model.Driver;
 
 
-public class DriverLoginService {
+public class DriverService {
 	private static ConnectionService connection = new ConnectionService();
 
 

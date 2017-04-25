@@ -17,7 +17,7 @@ import com.GoatRunner.exception.GoatRunnerException;
 import com.GoatRunner.model.Cab;
 import com.GoatRunner.model.CurrentRides;
 import com.GoatRunner.model.Driver;
-import com.GoatRunner.services.DriverLoginService;
+import com.GoatRunner.services.DriverService;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -30,7 +30,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
  */
 
 @Path("/driver")
-public class DriverLoginController {
+public class DriverController {
 	
 		ObjectMapper mapper = new ObjectMapper();
 		@Context
@@ -43,7 +43,7 @@ public class DriverLoginController {
 			Driver driver= new Driver();
 			String responseObject = "";
 			try {
-				driver = DriverLoginService.login_driver(driver_Id, password);
+				driver = DriverService.login_driver(driver_Id, password);
 				HttpSession session = httpServletRequest.getSession(true);
 				session.setAttribute(Integer.toString(driver_Id), driver);
 				session.setMaxInactiveInterval(420);
@@ -69,7 +69,7 @@ public class DriverLoginController {
 			Cab cab = new Cab();
 			String responseObject = "";
 			try {
-				cab = DriverLoginService.cabToDriver(driver_Id);
+				cab = DriverService.cabToDriver(driver_Id);
 				HttpSession session = httpServletRequest.getSession(true);
 				session.setAttribute(Integer.toString(driver_Id), cab);
 				session.setMaxInactiveInterval(420);
@@ -96,8 +96,8 @@ public class DriverLoginController {
 			List<CurrentRides> list = new ArrayList<CurrentRides>();
 			String responseObject = "";
 			try {
-				list = DriverLoginService.getRides(driver_Id);
-				DriverLoginService.updateLocation(driver_Id,latitude,longitude);
+				list = DriverService.getRides(driver_Id);
+				DriverService.updateLocation(driver_Id,latitude,longitude);
 				HttpSession session = httpServletRequest.getSession(true);
 				session.setAttribute(Integer.toString(driver_Id), list);
 				session.setMaxInactiveInterval(420);
@@ -122,7 +122,7 @@ public class DriverLoginController {
 	public Response logout(@QueryParam("driverId") int driverId) {
 		String response = "";
 		try {
-			if (DriverLoginService.driverValidation(driverId)) {
+			if (DriverService.driverValidation(driverId)) {
 
 				response = "Driver successfully logged out";
 				HttpSession session = httpServletRequest.getSession(false);
