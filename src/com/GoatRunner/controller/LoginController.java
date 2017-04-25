@@ -15,13 +15,13 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
 
-import org.codehaus.jackson.JsonProcessingException;
-import org.codehaus.jackson.map.ObjectMapper;
+//import org.codehaus.jackson.JsonProcessingException;
+//import org.codehaus.jackson.map.ObjectMapper;
 
 import com.GoatRunner.exception.GoatRunnerException;
 import com.GoatRunner.model.User;
 import com.GoatRunner.services.LoginService;
-<<<<<<< HEAD
+
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.gson.Gson;
