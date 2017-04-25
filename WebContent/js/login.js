@@ -71,6 +71,14 @@ function validate()
 		contentType :"application/json",
 		success : function(resultData) {
 			window.location.href = "http://localhost:8080/GoatRunner/BookingPage.html"
+		},
+		error: function(data){
+			if(code == 400){
+				alert("Oops!! Somethings went wrong.. Please try after sometime");
+			}
+			if(code == 500){
+				alert("Oops!! Somethings went wrong.. Please try after sometime");
+			}
 		}
 	});
 	}

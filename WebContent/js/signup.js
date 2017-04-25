@@ -79,7 +79,15 @@ function validate()
 		data : JSON.stringify(j),
 		contentType :"application/json",
 		success: function(resultData) 
-		{window.location.href = "http://localhost:8080/GoatRunner/LoginPage.html";}
+		{window.location.href = "http://localhost:8080/GoatRunner/LoginPage.html";},
+		error: function(data){
+			if(code == 400){
+				alert("Oops!! Somethings went wrong.. Please try after sometime");
+			}
+			if(code == 500){
+				alert("Oops!! Somethings went wrong.. Please try after sometime");
+			}
+		}
 	});
 	}
 }

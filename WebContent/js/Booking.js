@@ -30,6 +30,14 @@ function logout(){
 			success: function(resultData) 
 			{
 				window.location.href = "http://localhost:8080/GoatRunner/HomePage.html"
+			},
+			error: function(data){
+				if(code == 400){
+					alert("Oops!! Somethings went wrong.. Please try after sometime");
+				}
+				if(code == 500){
+					alert("Oops!! Somethings went wrong.. Please try after sometime");
+				}
 			}
 		});
 	}
@@ -96,6 +104,14 @@ function validate()
 				success: function(resultData) 
 				{
 					window.location.href = "http://localhost:8080/GoatRunner/ConfirmedBooking.html"
+				},
+				error: function(data){
+					if(code == 400){
+						alert("Oops!! Somethings went wrong.. Please try after sometime");
+					}
+					if(code == 500){
+						alert("Oops!! Somethings went wrong.. Please try after sometime");
+					}
 				}
 			});
 		}
@@ -125,6 +141,14 @@ function validate()
 				success: function(resultData) 
 				{
 					window.location.href = "http://localhost:8080/GoatRunner/BookingPage.html"
+				},
+				error: function(data){
+					if(code == 400){
+						alert("Oops!! Somethings went wrong.. Please try after sometime");
+					}
+					if(code == 500){
+						alert("Oops!! Somethings went wrong.. Please try after sometime");
+					}
 				}
 			});
 		}
@@ -319,7 +343,9 @@ function callDistance(){
 	    				"origin": origins,
 	    				"destination": destinations,
 	    				"distance": distance,
-	    				"duration": duration
+	    				"duration": duration,
+	    				"latitude": lat_from,
+	    				"longitutde": lng_from
 	    			}
 	    			
 	    			$.ajax({

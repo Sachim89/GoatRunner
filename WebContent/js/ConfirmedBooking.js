@@ -6,7 +6,7 @@ $(document).ready(function(){
        $('#driverName').val(c.driver_name);
        $('#driverNumber').val(c.driver_number);
        $('#cabNumber').val(c.cab_number);
-       $("#rate").val(c.rate);
+       $("#time").val(c.time);
        localStorage.setItem("BookingId",c.booking_id);
     });
    //Logout functionality
@@ -31,6 +31,14 @@ $(document).ready(function(){
 			success: function(resultData) 
 			{
 				window.location.href = "http://localhost:8080/GoatRunner/BookingPage.html"
+			},
+			error: function(data){
+				if(code == 400){
+					alert("Oops!! Somethings went wrong.. Please try after sometime");
+				}
+				if(code == 500){
+					alert("Oops!! Somethings went wrong.. Please try after sometime");
+				}
 			}
 		});
 	}); 	
@@ -83,6 +91,14 @@ function logout(){
 			success: function(resultData) 
 			{
 				window.location.href = "http://localhost:8080/GoatRunner/HomePage.html"
+			},
+			error: function(data){
+				if(code == 400){
+					alert("Oops!! Somethings went wrong.. Please try after sometime");
+				}
+				if(code == 500){
+					alert("Oops!! Somethings went wrong.. Please try after sometime");
+				}
 			}
 		});
 	}
