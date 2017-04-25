@@ -2,10 +2,19 @@ package com.GoatRunner.model;
 
 public class Driver {
 	private String name;
+	private String password;
 	private int driver_id;
 	private String phone_number;
 	
 	 
+	
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
 
 	public String getName() {
 		return name;

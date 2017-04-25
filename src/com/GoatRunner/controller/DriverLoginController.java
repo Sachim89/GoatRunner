@@ -12,6 +12,7 @@ import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
 
 import com.GoatRunner.exception.GoatRunnerException;
+import com.GoatRunner.model.Cab;
 import com.GoatRunner.model.Driver;
 import com.GoatRunner.services.DriverLoginService;
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -51,7 +52,33 @@ public class DriverLoginController {
 			return Response.status(Status.OK).entity(responseObject).build();
 		}
 	
-	
+		@Path("/get_cab")
+		@GET
+		public Response cabToDriver(@QueryParam("driver_Id") int driver_Id) {
+			System.out.println("Entered");
+			Cab cab = new Cab();
+			String responseObject = "";
+			try {
+				cab = DriverLoginService.cabToDriver(driver_Id);
+				HttpSession session = httpServletRequest.getSession(true);
+				session.setAttribute(Integer.toString(driver_Id), cab);
+				session.setMaxInactiveInterval(420);
+			} catch (GoatRunnerException e) {
+				return Response.status(Status.BAD_REQUEST).build();
+			} catch (SQLException e) {
+				return Response.status(Status.INTERNAL_SERVER_ERROR).build();
+			}
+			try {
+				responseObject = mapper.writeValueAsString(cab);
+			} catch (JsonProcessingException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+
+			return Response.status(Status.OK).entity(responseObject).build();
+		}
+		
+		
 	@Path("/logout")
 	@GET
 	public Response logout(@QueryParam("driverId") int driverId) {

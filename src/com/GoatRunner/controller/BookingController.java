@@ -7,6 +7,7 @@ import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
@@ -70,7 +71,7 @@ public class BookingController {
 	@POST
 	@Consumes({ MediaType.APPLICATION_JSON })
 
-	public Response cancellingARide(@PathParam("bookingId") Integer bookingId) {
+	public Response cancellingARide(@QueryParam("bookingId") Integer bookingId) {
 
 		System.out.println("Entered");
 		try {
@@ -85,7 +86,7 @@ public class BookingController {
 	@Path("/complete")
 	@POST
 	@Consumes({ MediaType.APPLICATION_JSON })
-	public Response completingARide(@PathParam("bookingId") Integer bookingId) {
+	public Response completingARide(@QueryParam("bookingId") Integer bookingId) {
 
 		System.out.println("Entered");
 		try {
