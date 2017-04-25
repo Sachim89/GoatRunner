@@ -15,8 +15,7 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
 
-//import org.codehaus.jackson.JsonProcessingException;
-//import org.codehaus.jackson.map.ObjectMapper;
+
 
 import com.GoatRunner.exception.GoatRunnerException;
 import com.GoatRunner.model.User;

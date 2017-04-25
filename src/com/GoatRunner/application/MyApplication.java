@@ -9,6 +9,7 @@ import com.GoatRunner.controller.BookingController;
 import com.GoatRunner.controller.LoginController;
 
 
+
 public class MyApplication extends Application{
 	@Override
     public Set<Class<?>> getClasses() {
