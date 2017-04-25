@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<link href="css/HomePage.css" rel="stylesheet">
+
+<title>Goat Runner</title>
+</head>
+<body>
+	
+	<div style="float: right; font-style: italic; color: #4CAF50;">
+		<span id="log"></span><a href="HomePage.html" onclick="logout()">Logout</a>
+	</div>
+
+	<div id="Rides">
+		<h4 align="center">Rides For the Day</h4>
+		<br>
+		<form action="/" method="post">
+			
+			<div id="panel" style="width: 400px; height: 400px; float: left;"></div>
+			<div class="container">
+				<label><b>Ride Number</b> &nbsp;  &nbsp;  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </label> <input type="text" id="Ride number"required> <br> <br>
+				<label><b>TO Address</b>  &nbsp; &nbsp;  </label> <input type="number" id="TO Address" required> <br> <br>
+				<label><b> From Address</b> </label> <input type="text" id="From Address" required> <br> <br>
+				<label><b> Student Id</b> &nbsp;  &nbsp;  &nbsp; </label> <input type="number" id="Student ID" required> <br>
+			
+<select id="mySelect" onchange="myFunction()">
+  <option value="In Progress">In Progress
+  <option value="completed">Completed
+  <option value="Cancelled">Cancelled
+  
+</select>	
+				
+				
+				
+				
+				
+				
+				<script type="text/javascript">
+				
+				// Dropdown
+				  function myFunction() {
+    var x = document.getElementById("mySelect").value;
+    document.getElementById("demo").innerHTML = "You selected: " + x;
+}
+				
+				
+					
+				</script>
+			</div>
+		</form>
+	</div>
+
+</body>
+</html>
