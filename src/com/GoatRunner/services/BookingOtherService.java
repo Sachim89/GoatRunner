@@ -31,7 +31,7 @@ public class BookingOtherService {
 		ConnectionService connection = new ConnectionService();
 		Connection con = connection.createConnection();
 
-		PreparedStatement st = con.prepareStatement("UPDATE BOOKING SET status =1 where bookingId=?");
+		PreparedStatement st = con.prepareStatement("UPDATE BOOKINGDETAILS SET status =1 where bookingId=?");
 		st.setInt(1, bookingId);
 		st.executeQuery();
 		st.close();

@@ -4,58 +4,65 @@ $(document)
 					$("#getcab").click(function() {
 						getCab();
 					});
-					
-					
 
 					var driverId = localStorage.getItem("userid");
-					
+
 					console.log(driverId);
 					var Lat;
 					var Lon;
 					if (navigator.geolocation) {
 						navigator.geolocation.getCurrentPosition(function(p) {
-							 Lat = p.coords.latitude;
-							 Lon = p.coords.longitude;
+							Lat = p.coords.latitude;
+							Lon = p.coords.longitude;
 
 						});
 					}
 
 					var ajax_call = function() {
-						console.log("Entered");
 						$
 								.ajax({
 									url : "http://localhost:8080/GoatRunner/application/driver/get_rides?driver_Id="
-											+ driverId + "&latitude=" + Lat + "&longitude=" + Lon,
+											+ driverId
+											+ "&latitude="
+											+ Lat
+											+ "&longitude=" + Lon,
 									type : "POST",
 									contentType : "application/json",
 									success : function(result) {
 										$("#rides tbody").remove();
-										
+
 										var data = JSON.parse(result);
 										console.log(data);
-										console.log("Data is : " + data[0].bookingid);
+										console.log("Data is : "
+												+ data[0].bookingid);
 										var tr;
-									    for (var i = 0; i < data.length; i++) {
-									    	var counter = data[i];
-									    	console.log(counter);
-									        tr = $('<tr/>');
-									        tr.append("<td>" + counter.bookingId + "</td>");
-									        tr.append("<td>" + counter.studentId + "</td>");
-									        tr.append("<td>" + counter.source + "</td>");
-									        tr.append("<td>" + counter.destination + "</td>");
-									        tr.append('<td><select id="mySelect"> <option value="0">In Progress<option value="1">Completed<option value="1">Cancelled</select></td></tr>');
-									        $('table').append(tr);
-									        
-									       
-									    }
-									    
-									    
-									    if($('#mySelect').val() == 1) {
-									    	console.log("Entered");
-									    } 
-									    
-									    
-									    
+										for (var i = 0; i < data.length; i++) {
+											var counter = data[i];
+											console.log(counter);
+											tr = $('<tr/>');
+											tr.append("<td>"
+													+ counter.bookingId
+													+ "</td>");
+											tr.append("<td>"
+													+ counter.studentId
+													+ "</td>");
+											tr.append("<td>" + counter.source
+													+ "</td>");
+											tr.append("<td>"
+													+ counter.destination
+													+ "</td>");
+											tr
+													.append('<td><select id="mySelect"> <option value="0">In Progress<option value="1">Completed<option value="1">Cancelled</select></td></tr>');
+											$('table').append(tr);
+
+										}
+
+										
+											$("#mySelect").change(function() {
+												getStatus();
+											});
+										
+
 									},
 									error : function(data) {
 										if (data == 400) {
@@ -67,14 +74,11 @@ $(document)
 									}
 								});
 
-					} 
-					var interval = 1000*60*1;  
-						//1000 * 60 * 1; // where X is your
-										// every X
-					// minutes
+					}
+
+					var interval = 1000 * 60 * 1;
+					;
 					setInterval(ajax_call, interval);
-					
-					
 
 				});
 
@@ -115,29 +119,28 @@ function getCab() {
 			});
 }
 
-
 function getStatus() {
 	console.log("getStatus");
 	var bookingId = localStorage.getItem("bookingId");
 	$
-	.ajax({
-		url : "http://localhost:8080/GoatRunner/application/ride/complete?bookingId="
-				+ bookingId,
-		type : "POST",
-		contentType : "application/json",
-		success : function(result){
-			console.log("success");
-		},
-		error : function(data) {
-			if (data == 400) {
-				alert("Oops!! Somethings went wrong.. Please try after sometime");
-			}
-			if (data == 500) {
-				alert("Oops!! Somethings went wrong.. Please try after sometime");
-			}
-		}
-	});
-	}
+			.ajax({
+				url : "http://localhost:8080/GoatRunner/application/ride/complete?bookingId="
+						+ bookingId,
+				type : "POST",
+				contentType : "application/json",
+				success : function(result) {
+					console.log("success");
+				},
+				error : function(data) {
+					if (data == 400) {
+						alert("Oops!! Somethings went wrong.. Please try after sometime");
+					}
+					if (data == 500) {
+						alert("Oops!! Somethings went wrong.. Please try after sometime");
+					}
+				}
+			});
+}
 
 function Locationfunction() {
 	if (navigator.geolocation) {

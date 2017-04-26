@@ -93,6 +93,8 @@ public class DriverController {
 		@POST
 		public Response getRides(@QueryParam("driver_Id") int driver_Id, @QueryParam("latitude") double latitude,
 				@QueryParam("longitude") double longitude) {
+			
+			//System.out.println(select);
 			System.out.println("Entered");
 			List<CurrentRides> list = new ArrayList<CurrentRides>();
 			String responseObject = "";
