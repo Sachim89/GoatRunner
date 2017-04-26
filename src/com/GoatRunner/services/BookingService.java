@@ -61,7 +61,10 @@ public class BookingService {
 			details.setDestinationLatitude(bookingDetails.getDouble("destinationLatitude"));
 			details.setDestinationLongitude(bookingDetails.getDouble("destinationLongitude"));
 			details.setNoofPassenges(bookingDetails.getInt("noOfPassengers"));
+			details.setEstimatedTime(optimalCab.get(cabNO));
+			details.setBookingStatus(0);
 			ResultSet resultSet = preparedStatement.executeQuery();
+
 			if (resultSet != null) {
 				while (resultSet.next()) {
 					driverId = resultSet.getInt(2);
@@ -88,8 +91,8 @@ public class BookingService {
 			String key[] = { "bookingid" };
 
 			preparedStatement = conn.prepareStatement(
-					"INSERT INTO BOOKINGDETAILS (cabno,driverid,studentid,distance,toplace,fromplace,noofpassengers,BOOKINGTIME,BOOKINGDATE,SOURCELATITUDE,SOURCELONGITUDE,DESTINATIONLATITUDE,DESTINATIONLONGITUDE)"
-							+ "VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)",
+					"INSERT INTO BOOKINGDETAILS (cabno,driverid,studentid,distance,toplace,fromplace,noofpassengers,BOOKINGTIME,BOOKINGDATE,SOURCELATITUDE,SOURCELONGITUDE,DESTINATIONLATITUDE,DESTINATIONLONGITUDE,ESTIMATEDARRIVALTIME,STATUS)"
+							+ "VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)",
 					key);
 			preparedStatement.setInt(1, details.getCabId());
 			preparedStatement.setInt(2, details.getDriverId());
@@ -104,6 +107,8 @@ public class BookingService {
 			preparedStatement.setDouble(11, details.getSourceLongitude());
 			preparedStatement.setDouble(12, details.getDestinationLatitude());
 			preparedStatement.setDouble(13, details.getDestinationLongitude());
+			preparedStatement.setString(14, details.getEstimatedTime());
+			preparedStatement.setInt(15, details.getBookingStatus());
 			preparedStatement.executeUpdate();
 			ResultSet rs = preparedStatement.getGeneratedKeys();
 			if (rs.next()) {
@@ -116,9 +121,9 @@ public class BookingService {
 			 * if (generatedKeys.next()) { // generatedKeys.getLong(1); }
 			 */
 
-			preparedStatement = conn.prepareStatement("UPDATE CAB SET NOOFPASSENGERS=?");
+			/*preparedStatement = conn.prepareStatement("UPDATE CAB SET NOOFPASSENGERS=?");
 			preparedStatement.setInt(1, details.getNoofPassenges() + 1);
-			preparedStatement.execute();
+			preparedStatement.execute();*/
 			preparedStatement.close();
 
 		} catch (

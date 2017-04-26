@@ -43,6 +43,8 @@ public class BookingDetails implements Serializable {
 	private double destinationLatitude;
 
 	private double destinationLongitude;
+	
+	private int bookingStatus;
 
 	public int getBookingId() {
 		return bookingId;
@@ -170,6 +172,14 @@ public class BookingDetails implements Serializable {
 
 	public void setDestinationLongitude(double destinationLongitude) {
 		this.destinationLongitude = destinationLongitude;
+	}
+
+	public int getBookingStatus() {
+		return bookingStatus;
+	}
+
+	public void setBookingStatus(int bookingStatus) {
+		this.bookingStatus = bookingStatus;
 	}
 
 }

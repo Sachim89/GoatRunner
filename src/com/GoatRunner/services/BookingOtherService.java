@@ -17,7 +17,8 @@ public class BookingOtherService {
 	public static void cancel(int bookingId) throws GoatRunnerException, SQLException {
 		ConnectionService connection = new ConnectionService();
 		Connection con = connection.createConnection();
-		PreparedStatement st = con.prepareStatement("UPDATE BOOKING SET status =1 where bookingId=?");
+
+		PreparedStatement st = con.prepareStatement("UPDATE bookingdetails SET status =1 where BOOKINGID=?");
 		st.setInt(1, bookingId);
 		st.executeQuery();
 		st.close();

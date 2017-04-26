@@ -1,25 +1,18 @@
 $(document).ready(function () {
-	$("#loginButton").click(function(){
+	$("#submit").click(function(){
 		validate();
 	});
 	
-	//Displays the rules for Student ID when mouse pointer is over ?
-	$("#idrules").hover(function(){
-		$(this).html($('<span style="color:red;">Student ID should be 9 digits</span>'))
-	});
-	
-	//Displays the rules for password when mouse pointer is over ?
-	$("#passrules").hover(function(){
-		$(this).html($('<span style="color:red;">Password should be minimum 6 characters</span>'))
-	});
 	
 });
 
 function validate()
 {
-	var id = $("#stud_id").val();
+	var id = $("#userid").val();
 	var password = $("#password").val();
-	localStorage.setItem("StudentID",id);
+	console.log(password);
+	localStorage.setItem("userid",id);
+	localStorage.setItem("driverPassword",password);
 	
 	//Check the Password and Student ID
 	if(id == "" && password == "")
@@ -44,33 +37,34 @@ function validate()
 		$('input[type="number"]').css("box-shadow","0 0 3px red");
 	}
 	if(password !="" || id != ""){	
-			if(id.length < 9 && password.length < 6){
-				alert("Student ID should be 9 digits and Password should be minimum 6 characters");
+			if(id.length < 3 && password.length < 3){
+				alert("Driver ID should be 9 digits and Password should be minimum 3 characters");
 			}
-			else if(password.length < 6){
+			else if(password.length < 3){
 				alert("Password should be minimum 6 characters");
 			}
-			else if(id.length < 9){
-				alert("Student ID should be 9 digits");
+			else if(id.length < 3){
+				alert("Driver ID should be 3 digits");
 			}
-			else if(id.length > 9){
-				alert("Student ID should be 9 digits");
+			else if(id.length > 3){
+				alert("Driver ID should be 3 digits");
 			}
 	}
 	
 	//Send the valid data to Service layer
-	if(password.length >= 6 && id.length == 9){
-		var studentId = parseInt(document.getElementById("stud_id").value);
+	if(password.length >= 3 && id.length == 3){
+		var driverId = parseInt(document.getElementById("userid").value);
 		var password = document.getElementById("password").value;
-		localStorage.setItem("StudentID",studentId);
+		localStorage.setItem("driverId",driverId);
+		localStorage.setItem("driverPassword",password);
 
 	$.ajax({
-		url : "http://localhost:8080/GoatRunner/application/user/login?userId="
-				+ studentId + "&password=" + password,
+		url : "http://localhost:8080/GoatRunner/application/driver/login_driver?driver_Id="
+				+ driverId + "&password=" + password,
 		type : "GET",
 		contentType :"application/json",
 		success : function(resultData) {
-			window.location.href = "http://localhost:8080/GoatRunner/BookingPage.html"
+			window.location.href = "http://localhost:8080/GoatRunner/Rides.html"
 		},
 		error: function(data){
 			if(data == 400){

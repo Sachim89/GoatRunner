@@ -5,21 +5,20 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-
 import com.GoatRunner.exception.GoatRunnerException;
 import com.GoatRunner.model.User;
 
 public class LoginService {
 	private static ConnectionService connection = new ConnectionService();
 
-
 	public static User login(int userid, String password) throws GoatRunnerException, SQLException {
-		ConnectionService connection = new ConnectionService(); // class for connection
+		ConnectionService connection = new ConnectionService(); // class for
+																// connection
 
 		Connection con = connection.createConnection();
 		PreparedStatement st = con.prepareStatement("select * from passenger where studentid=?");
 		st.setInt(1, userid);
-		//st.setString(1, userid);
+		// st.setString(1, userid);
 
 		ResultSet rs = st.executeQuery();
 		String checkUser = "";
@@ -41,19 +40,19 @@ public class LoginService {
 
 			if (resultSet != null) {
 				while (resultSet.next()) {
-					user.setAddress(rs.getString(3));
-					user.setEmail_id(rs.getString(1));
-					user.setFavourite_location(rs.getString(4));
-					user.setName(rs.getString(1));
-					user.setPhone_number(rs.getString(5));
-					user.setStudent_id(rs.getInt(2));
-					user.setSecurity_question(rs.getString(6));
-					user.setAnswer(rs.getString(7));
+
+					user.setName(resultSet.getString(2));
+					user.setAddress(resultSet.getString(5));
+					user.setEmail_id(resultSet.getString(7));
+					user.setFavourite_location(resultSet.getString(6));
+
+					user.setPhone_number(resultSet.getString(4));
+					user.setStudent_id(resultSet.getInt(1));
 				}
 			}
 			return user;
 			// successful
-			
+
 		}
 		// to check if password is incorrect
 		if (checkUser.equals(userid) && !(checkpwd.equals(password))) {
@@ -106,20 +105,18 @@ public class LoginService {
 	public static boolean userValidation(int userId) throws SQLException, GoatRunnerException {
 		Connection con = connection.createConnection();
 		PreparedStatement st;
-		
-			st = con.prepareStatement("select * from passenger where studentId=?");
-			st.setInt(1, userId);
-			ResultSet rs = st.executeQuery();
-			if (rs != null) {
 
-				if (rs.next() == true) {
-					return true;
-				}
-				else {
-					throw new GoatRunnerException("User does not exist");
-				}
+		st = con.prepareStatement("select * from passenger where studentId=?");
+		st.setInt(1, userId);
+		ResultSet rs = st.executeQuery();
+		if (rs != null) {
+
+			if (rs.next() == true) {
+				return true;
+			} else {
+				throw new GoatRunnerException("User does not exist");
 			}
-		
+		}
 
 		return false;
 	}

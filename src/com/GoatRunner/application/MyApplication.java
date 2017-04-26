@@ -6,6 +6,7 @@ import java.util.Set;
 import javax.ws.rs.core.Application;
 
 import com.GoatRunner.controller.BookingController;
+import com.GoatRunner.controller.DriverController;
 import com.GoatRunner.controller.LoginController;
 
 
@@ -17,6 +18,7 @@ public class MyApplication extends Application{
         Set<Class<?>> s = new HashSet<Class<?>>();
         s.add(LoginController.class);
         s.add(BookingController.class);
+        s.add(DriverController.class);
         return s;
     }
 }

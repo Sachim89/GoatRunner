@@ -7,6 +7,7 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.ws.rs.GET;
+import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.Context;
@@ -63,7 +64,7 @@ public class DriverController {
 		}
 	
 		@Path("/get_cab")
-		@GET
+		@POST
 		public Response cabToDriver(@QueryParam("driver_Id") int driver_Id) {
 			System.out.println("Entered");
 			Cab cab = new Cab();
@@ -89,7 +90,7 @@ public class DriverController {
 		}
 		
 		@Path("/get_rides")
-		@GET
+		@POST
 		public Response getRides(@QueryParam("driver_Id") int driver_Id, @QueryParam("latitude") double latitude,
 				@QueryParam("longitude") double longitude) {
 			System.out.println("Entered");
