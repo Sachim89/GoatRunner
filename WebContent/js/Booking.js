@@ -1,66 +1,53 @@
-$(document)
-		.ready(
-				function() {
-					// Validates the form before sending the requests
-					$("#request").click(function() {
-						validate();
-					});
+$(document).ready(function() {
+	// Validates the form before sending the requests
+	$("#request").click(function() {
+		validate();
+	});
 
-					// Informs the user to find the location in map
-					$("#toLocate")
-							.hover(
-									function() {
-										$(this)
-												.html(
-														$('<span style="color:red;">Press enter in text box to locate in Map</span>'))
-									});
+	// Informs the user to find the location in map
+	$("#toLocate").hover(function() {
+		$(this).html($('<span style="color:red;">Press enter in text box to locate in Map</span>'));
+	});
+	
+	// Displays the rules for password when mouse pointer is over ?
+	$("#fromLocate").hover(function() {
+		$(this).html($('<span style="color:red;">Press enter check the route</span>'));
+	});
 
-					// Displays the rules for password when mouse pointer is
-					// over ?
-					$("#fromLocate")
-							.hover(
-									function() {
-										$(this)
-												.html(
-														$('<span style="color:red;">Press enter check the route</span>'))
-									});
+	//Logout
+	$("#logout").click(function() {
+		logout();
+	});
+});
 
-					$("#logout").click(function() {
-						logout();
-					})
-
-				});
 // Logout functionality
 function logout() {
 	if (confirm("Do you want to logout?")) {
 		var id = localStorage.getItem("StudentID");
-		$
-				.ajax({
-					url : "http://localhost:8080/GoatRunner/application/user/logout?userId="
-							+ id,
-					type : "GET",
-					contentType : "application/json",
-					success : function(resultData) {
-						window.location.href = "http://localhost:8080/GoatRunner/HomePage.html"
-					},
-					error : function(data) {
-						if (code == 400) {
-							alert("Oops!! Somethings went wrong.. Please try after sometime");
-						}
-						if (code == 500) {
-							alert("Oops!! Somethings went wrong.. Please try after sometime");
-						}
-					}
-				});
-	} else {
-		window.location.href = "http://localhost:8080/GoatRunner/BookingPage.html"
-	}
-	// localStorage.removeItem("StudentID");
+		$.ajax({
+			url : "http://localhost:8080/GoatRunner/application/user/logout?userId="+ id,
+			type : "GET",
+			contentType : "application/json",
+			success : function(resultData) {
+				window.location.href = "http://localhost:8080/GoatRunner/HomePage.html"
+			},
+			error : function(data) {
+				if (code == 400) {
+					alert("Oops!! Somethings went wrong.. Please try after sometime");
+				}
+				if (code == 500) {
+					alert("Oops!! Somethings went wrong.. Please try after sometime");
+				}
+			}
+		});
+		} else {
+			window.location.href = "http://localhost:8080/GoatRunner/BookingPage.html"
+		}
+	 localStorage.removeItem("StudentID");
 }
 
 // Validate the given input data
 function validate() {
-	
 	var isValid = true;
 	var to = $("#toAddress").val();
 	var from = $("#fromAddress").val();
@@ -92,17 +79,13 @@ function validate() {
 			localStorage.setItem("fromAddress", from);
 			localStorage.setItem("numPass", numPass);
 			
-
+			//Functioncall to send the required data
 			callDistance();
 
-		//	window.location.href = "http://localhost:8080/GoatProject/Confirmed/ConfirmedBooking.html"
 			// Send the User ID to service layer
 			/*var distance;
 			var duration;
 			var x = localStorage.getItem("StudentID");
-			
-			
-
 			var j = {
 				"student_id" : x,
 				"toAddress" : to,
@@ -112,24 +95,23 @@ function validate() {
 				"duration" : duration
 			}
 
-			$
-					.ajax({
-						url : "http://localhost:8080/GoatRunner/application/user/booking",
-						type : "POST",
-						data : JSON.stringify(j),
-						contentType : "application/json",
-						success : function(resultData) {
-							window.location.href = "http://localhost:8080/GoatRunner/ConfirmedBooking.html"
-						},
-						error : function(data) {
-							if (code == 400) {
-								alert("Oops!! Somethings went wrong.. Please try after sometime");
-							}
-							if (code == 500) {
-								alert("Oops!! Somethings went wrong.. Please try after sometime");
-							}
-						}
-					});*/
+			$.ajax({
+				url : "http://localhost:8080/GoatRunner/application/user/booking",
+				type : "POST",
+				data : JSON.stringify(j),
+				contentType : "application/json",
+				success : function(resultData) {
+					window.location.href = "http://localhost:8080/GoatRunner/ConfirmedBooking.html"
+				},
+				error : function(data) {
+					if (code == 400) {
+						alert("Oops!! Somethings went wrong.. Please try after sometime");
+					}
+					if (code == 500) {
+						alert("Oops!! Somethings went wrong.. Please try after sometime");
+					}
+				}
+			});*/
 		} else {
 			alert("You have cancelled the booking");
 
@@ -146,24 +128,23 @@ function validate() {
 				"cancel" : true
 			}
 
-			$
-					.ajax({
-						url : "http://localhost:8080/GoatRunner/application/user/bookingCancel",
-						type : "GET",
-						data : JSON.stringify(j),
-						contentType : "application/json",
-						success : function(resultData) {
-							window.location.href = "http://localhost:8080/GoatRunner/BookingPage.html"
-						},
-						error : function(data) {
-							if (code == 400) {
-								alert("Oops!! Somethings went wrong.. Please try after sometime");
-							}
-							if (code == 500) {
-								alert("Oops!! Somethings went wrong.. Please try after sometime");
-							}
-						}
-					});
+			$.ajax({
+				url : "http://localhost:8080/GoatRunner/application/user/bookingCancel",
+				type : "GET",
+				data : JSON.stringify(j),
+				contentType : "application/json",
+				success : function(resultData) {
+					window.location.href = "http://localhost:8080/GoatRunner/BookingPage.html"
+				},
+				error : function(data) {
+					if (code == 400) {
+						alert("Oops!! Somethings went wrong.. Please try after sometime");
+					}
+					if (code == 500) {
+						alert("Oops!! Somethings went wrong.. Please try after sometime");
+					}
+				}
+			});
 		}
 	}
 }
@@ -171,41 +152,33 @@ function validate() {
 // Get the current location id "Use current location" is requested
 function Locationfunction() {
 	if (navigator.geolocation) {
-		navigator.geolocation
-				.getCurrentPosition(function(p) {
-					var LatLng = new google.maps.LatLng(p.coords.latitude,
-							p.coords.longitude);
-					var mapOptions = {
-						center : LatLng,
-						zoom : 13,
-						mapTypeId : google.maps.MapTypeId.ROADMAP
-					};
-					var geocoder = geocoder = new google.maps.Geocoder();
-					geocoder
-							.geocode(
-									{
-										'latLng' : LatLng
-									},
-									function(results, status) {
-										if (status == google.maps.GeocoderStatus.OK) {
-											if (results[0]) {
-												document
-														.getElementById("fromAddress").value = results[0].formatted_address;
-											}
-										}
-									});
-					var map = new google.maps.Map(document
-							.getElementById("map"), mapOptions);
-					var marker = new google.maps.Marker({
-						position : LatLng,
-						map : map,
-					});
+		navigator.geolocation.getCurrentPosition(function(p) {
+			var LatLng = new google.maps.LatLng(p.coords.latitude,p.coords.longitude);
+			var mapOptions = {
+					center : LatLng,
+					zoom : 13,
+					mapTypeId : google.maps.MapTypeId.ROADMAP
+			};
+			var geocoder = geocoder = new google.maps.Geocoder();
+			geocoder.geocode({'latLng' : LatLng},
+			function(results, status) {
+				if (status == google.maps.GeocoderStatus.OK) {
+					if (results[0]) {
+						document.getElementById("fromAddress").value = results[0].formatted_address;
+					}
+				}
+			});
+			var map = new google.maps.Map(document.getElementById("map"), mapOptions);
+			var marker = new google.maps.Marker({
+				position : LatLng,
+				map : map,
+			});
 
-					google.maps.event.addListener(marker, "click", function(e) {
-						var infoWindow = new google.maps.InfoWindow();
-						infoWindow.open(map, marker);
-					});
-				});
+			google.maps.event.addListener(marker, "click", function(e) {
+				var infoWindow = new google.maps.InfoWindow();
+				infoWindow.open(map, marker);
+			});
+		});
 	} else {
 		alert('Geo Location feature is not supported in this browser.');
 	}
@@ -243,9 +216,7 @@ function searchTo() {
 	if (event.keyCode == 13) {
 		var to = document.getElementById("toAddress").value;
 		var geocoder = geocoder = new google.maps.Geocoder();
-		geocoder.geocode({
-			'address' : to
-		}, function(results, status) {
+		geocoder.geocode({'address' : to}, function(results, status) {
 			if (status == google.maps.GeocoderStatus.OK) {
 				lat_to = results[0].geometry.location.lat();
 				lng_to = results[0].geometry.location.lng();
@@ -278,9 +249,7 @@ function searchFrom() {
 	if (event.keyCode == 13) {
 		var from = document.getElementById("fromAddress").value;
 		var geocoder = geocoder = new google.maps.Geocoder();
-		geocoder.geocode({
-			'address' : from
-		}, function(results, status) {
+		geocoder.geocode({'address' : from}, function(results, status) {
 			if (status == google.maps.GeocoderStatus.OK) {
 				lat_from = results[0].geometry.location.lat();
 				lng_from = results[0].geometry.location.lng();
@@ -314,105 +283,78 @@ function searchFrom() {
 		}
 	}
 }
-// Function to send the service layer the distance and duration between the
-// origin and destination
+// Function to send the service layer the distance and duration between the origin and destination
 function callDistance() {
 
 	var lat_from, lng_from;
 	var from = document.getElementById("fromAddress").value;
 	var geocoder = geocoder = new google.maps.Geocoder();
-	geocoder
-			.geocode(
-					{
-						'address' : from
-					},
-					function(results, status) {
-						if (status == google.maps.GeocoderStatus.OK) {
-							lat_from = results[0].geometry.location.lat();
-							lng_from = results[0].geometry.location.lng();
+	geocoder.geocode({'address' : from},function(results, status) {
+		if (status == google.maps.GeocoderStatus.OK) {
+			lat_from = results[0].geometry.location.lat();
+			lng_from = results[0].geometry.location.lng();
+		}
+		var lat_to, lng_to;
+		var to = document.getElementById("toAddress").value;
+		var geocoder = geocoder = new google.maps.Geocoder();
+		geocoder.geocode({'address' : to},function(results, status) {
+			if (status == google.maps.GeocoderStatus.OK) {
+				lat_to = results[0].geometry.location.lat();
+				lng_to = results[0].geometry.location.lng();
+			}
+			var origin = new google.maps.LatLng(lat_to, lng_to);
+			var destination = new google.maps.LatLng(lat_from, lng_from);
+
+			var service = new google.maps.DistanceMatrixService();
+			service.getDistanceMatrix({
+				origins : [ origin ],
+				destinations : [ destination ],
+				travelMode : google.maps.TravelMode.DRIVING,
+				unitSystem : google.maps.UnitSystem.METRIC,
+				avoidHighways : false,
+				avoidTolls : false
+			},
+			function callback(response,status) {
+				if (status != google.maps.DistanceMatrixStatus.OK) {
+					alert('Error was: '+ status);
+				} else {
+					var origins = response.originAddresses;
+					var destinations = response.destinationAddresses;
+					var distance = response.rows[0].elements[0].distance.text;
+					var duration = response.rows[0].elements[0].duration.text;
+					var x = localStorage.getItem("StudentID");
+					var numPass = document.getElementById("numPass").value;
+
+					var j = {
+							"studentId" : x,
+							"noOfPassengers" : numPass,
+							"source" : origins,
+							"destination" : destinations,
+							"sourceLatitude" : lat_from,
+							"sourceLongitude" : lng_from,
+							"destinationLatitude" : lat_to,
+							"destinationLongitude" : lng_to
+					}
+
+					//Send the results and store the required data in local storage for further process
+					$.ajax({
+						url : "http://localhost:8080/GoatRunner/application/ride/book",
+						type : "POST",
+						data : JSON.stringify(j),
+						contentType : "application/json",
+						success : function(resultData) {
+							localStorage.setItem("bookingId",resultData.bookingId);
+							localStorage.setItem("cabId",resultData.cabId);
+							localStorage.setItem("driverId",resultData.driverId);
+							localStorage.setItem("driverName",resultData.driverName);
+							localStorage.setItem("estimatedTime",resultData.estimatedTime);
+							localStorage.setItem("source",resultData.source);
+							localStorage.setItem("destination",resultData.destination);
+							window.location.href = "http://localhost:8080/GoatRunner/ConfirmedBooking.html"
 						}
-
-						var lat_to, lng_to;
-						var to = document.getElementById("toAddress").value;
-						var geocoder = geocoder = new google.maps.Geocoder();
-						geocoder
-								.geocode(
-										{
-											'address' : to
-										},
-										function(results, status) {
-											if (status == google.maps.GeocoderStatus.OK) {
-												lat_to = results[0].geometry.location
-														.lat();
-												lng_to = results[0].geometry.location
-														.lng();
-											}
-
-											var origin = new google.maps.LatLng(
-													lat_to, lng_to);
-											var destination = new google.maps.LatLng(
-													lat_from, lng_from);
-
-											var service = new google.maps.DistanceMatrixService();
-											service
-													.getDistanceMatrix(
-															{
-																origins : [ origin ],
-																destinations : [ destination ],
-																travelMode : google.maps.TravelMode.DRIVING,
-																unitSystem : google.maps.UnitSystem.METRIC,
-																avoidHighways : false,
-																avoidTolls : false
-															},
-															function callback(
-																	response,
-																	status) {
-																if (status != google.maps.DistanceMatrixStatus.OK) {
-																	alert('Error was: '
-																			+ status);
-																} else {
-																	var origins = response.originAddresses;
-																	var destinations = response.destinationAddresses;
-																	var distance = response.rows[0].elements[0].distance.text;
-																	var duration = response.rows[0].elements[0].duration.text;
-																	var x = localStorage
-																			.getItem("StudentID");
-																	var numPass = document
-																			.getElementById("numPass").value;
-
-																	var j = {
-
-																		"studentId" : x,
-																		"noOfPassengers" : numPass,
-																		"source" : origins,
-																		"destination" : destinations,
-																		"sourceLatitude" : lat_from,
-																		"sourceLongitude" : lng_from,
-																		"destinationLatitude" : lat_to,
-																		"destinationLongitude" : lng_to
-																	}
-
-																	$
-																			.ajax({
-																				url : "http://localhost:8080/GoatRunner/application/ride/book",
-																				type : "POST",
-																				data : JSON
-																						.stringify(j),
-																				contentType : "application/json",
-																				success : function(
-																						resultData) {
-																					localStorage.setItem("bookingId",resultData.bookingId);
-																					localStorage.setItem("cabId",resultData.cabId);
-																					localStorage.setItem("driverId",resultData.driverId);
-																					localStorage.setItem("driverName",resultData.driverName);
-																					localStorage.setItem("estimatedTime",resultData.estimatedTime);
-																					localStorage.setItem("source",resultData.source);
-																					localStorage.setItem("destination",resultData.destination);
-																					window.location.href = "http://localhost:8080/GoatRunner/ConfirmedBooking.html"
-																				}
-																			});
-																}
-															});
-										});
 					});
-}
+				}
+			});
+		});
+	});	
+}	

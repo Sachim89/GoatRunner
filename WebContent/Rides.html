@@ -2,65 +2,38 @@
 <html>
 <link href='http://fonts.googleapis.com/css?family=Titillium+Web:400,300,600' rel='stylesheet' type='text/css'>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
-<script	src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
-
-
+<script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
 <meta charset="ISO-8859-1">
-<style>
-table {
-    font-family: arial, sans-serif;
-    border-collapse: collapse;
-    width: 100%;
-}
-
-td, th {
-    border: 1px solid #dddddd;
-    text-align: left;
-    padding: 8px;
-}
-
-tr:nth-child(even) {
-    background-color: #dddddd;
-}
-</style>
-
+<link href="css/Rides.css" rel="stylesheet">
 <title>Goat Runner</title>
 </head>
 <body>
-
-<script type="text/javascript"
-				src="http://maps.googleapis.com/maps/api/js?&key=AIzaSyAT6aVkKBBF-TSTXrclwuDV9xQx8TUbMao&libraries=places"></script>
-<script src="js/rides.js"></script>
-
-
+	<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?&key=AIzaSyAT6aVkKBBF-TSTXrclwuDV9xQx8TUbMao&libraries=places"></script>
+	<script src="js/rides.js"></script>
 	
-	<div style="float: right; font-style: italic; color: #4CAF50;">
-		<span id="log"></span><a href="HomePage.html" onclick="logout()">Logout</a>
+	<!-- Logout/ Logged in as -->
+	<div style="float: right;color: black;">
+		<span id="log"></span><a href="#" id="logout">Logout</a>
 	</div>
-
-	<button id="getcab" class="getcabBtn" id = "getcab">GetCabID</button>
-	<input type="number" placeholder="Cabid" name="Cabid" id="Cabid">
-		<h4 align="center">Rides For the Day</h4>
-		<br>
-		<form action="/" method="post">
-			
-<table id="rides">
-  <tr>
-    <th>BookingID</th>
-    <th>StudentID</th>
-    <th>TO</th> 
-    <th>FROM</th>
-    <th>STATUS</th>
-  </tr>
-
- 
-
-  
- 
-  
-</table>
-</form>
 	
-
+	<button id="getcab" class="getcabBtn" id="getcab">Get CabID</button>
+	<input type="number" placeholder="Cab ID" name="Cabid" id="Cabid">
+	<h4 align="center">RIDES FOR THE DAY</h4>
+	<br>
+	<form action="/" method="post">
+		<table id="rides">
+			<tr>
+				<th>BookingID</th>
+				<th>StudentID</th>
+				<th>TO</th>
+				<th>FROM</th>
+				<th>STATUS</th>
+			</tr>
+		</table>
+		<script type="text/javascript">
+				var x = localStorage.getItem("Name");
+				document.getElementById("log").innerHTML = "Logged in as: "+x+"  ";
+		</script>
+	</form>
 </body>
 </html>

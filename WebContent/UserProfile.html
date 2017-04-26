@@ -3,77 +3,60 @@
 <head>
 <meta charset="ISO-8859-1">
 <link href="css/style.css" rel="stylesheet">
-
 <title>Goat Runner</title>
 </head>
 <body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="js/userprofile.js"></script>
 
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-	<script src="js/userprofile.js"></script>
-	<div style="float: right; font-style: italic; color: #4CAF50;">
-		<span id="log"></span><a href="HomePage.html" onclick="logout()">Logout</a>
-	</div>
+<div style="float: right; font-style: italic; color: #4CAF50;">
+	<span id="log"></span><a href="HomePage.html" onclick="logout()">Logout</a>
+</div>
 
 <div class="form">	
-		<h4 align="center">User Account</h4>
-		<br>
-		
-					<div class="field-wrap">
-					<label> Student ID<span class="req">*</span></label>
-					<input type="number" id="StudentID" value ="123456789" placeholder="Enter the Student ID" required autocomplete="off" />
-				</div>
-				
-				<div class="field-wrap">
-					<label> Name<span class="req">*</span></label>
-					<input type="text" id="Name" value="jui" placeholder="Enter Name" required autocomplete="off" />
-				</div>
-			
-				<div class="field-wrap">
-					<label> Email Address<span class="req">*</span></label> 
-					<input type="email" id="Email" value="jguram@wpi.edu" placeholder="Enter Email ID" required autocomplete="off" />
-				</div>
-				
-				<div class="field-wrap">
-					<label> Set A Password<span class="req">*</span></label> 
-					<input type="password" id="Password" value="@wuhdn" placeholder="Enter Password" required autocomplete="off" />
-				</div>
-				
-				<div class="field-wrap">
-					<label> Address<span class="req">*</span></label> 
-					<input type="text" id="Address" value="4dennyst" placeholder="Enter Address" required autocomplete="off" />
-				</div>
-				
-				<div class="field-wrap">
-					<label> Phone number<span class="req">*</span></label> 
-					<input type="number" id="phone" value="773352788" placeholder="Enter Phone number" required autocomplete="off" />
-				</div>
-				
-				<div class="field-wrap">
-					<label> Favourite Location<span class="req">*</span></label> 
-					<input type="text" id="fav" value="WPI" placeholder="Enter favorite location" required autocomplete="off" />
-				</div>
-				
-				<div class="field-wrap">
-					<label> Security Question<span class="req">*</span></label> 
-					<select id="questions" style="width: 100%; outline: 0; border-color: #4CAF50">
-						<option value="">Select a question</option>
-						<option id="Q1"> What is your favorite place?</option>
-						<option id="Q2"> What is your birthplace?</option>
-					</select>
-				</div>
-				
-				<div class="field-wrap">
-					<label>Answer<span class="req">*</span></label>
-					<input type="text" id="answer" value="wajHJDGV" placeholder="Answer" required autocomplete="off" />
-				</div><br>
-				
-				<button type="submit" class="button button-block" onclick="update()">UPDATE</button>
-				
+	<h4 align="center">User Account</h4>
+	<br>
+	<div class="field-wrap">
+		<label> Student ID<span class="req">*</span></label>
+		<input type="number" id="StudentID" value ="123456789" placeholder="Enter the Student ID" required autocomplete="off" />
+	</div>		
+	<div class="field-wrap">
+		<label> Name<span class="req">*</span></label>
+		<input type="text" id="Name" value="jui" placeholder="Enter Name" required autocomplete="off" />
+	</div>
+	<div class="field-wrap">
+		<label> Email Address<span class="req">*</span></label> 
+		<input type="email" id="Email" value="jguram@wpi.edu" placeholder="Enter Email ID" required autocomplete="off" />
+	</div>
+	<div class="field-wrap">
+		<label> Set A Password<span class="req">*</span></label> 
+		<input type="password" id="Password" value="@wuhdn" placeholder="Enter Password" required autocomplete="off" />
+	</div>
+	<div class="field-wrap">
+		<label> Address<span class="req">*</span></label> 
+		<input type="text" id="Address" value="4dennyst" placeholder="Enter Address" required autocomplete="off" />
+	</div>
+	<div class="field-wrap">
+		<label> Phone number<span class="req">*</span></label> 
+		<input type="number" id="phone" value="773352788" placeholder="Enter Phone number" required autocomplete="off" />
+	</div>
+	<div class="field-wrap">
+		<label> Favourite Location<span class="req">*</span></label> 
+		<input type="text" id="fav" value="WPI" placeholder="Enter favorite location" required autocomplete="off" />
+	</div>
+	<div class="field-wrap">
+		<label> Security Question<span class="req">*</span></label> 
+		<select id="questions" style="width: 100%; outline: 0; border-color: #4CAF50">
+			<option value="">Select a question</option>
+			<option id="Q1"> What is your favorite place?</option>
+			<option id="Q2"> What is your birthplace?</option>
+		</select>
+	</div>	
+	<div class="field-wrap">
+		<label>Answer<span class="req">*</span></label>
+		<input type="text" id="answer" value="wajHJDGV" placeholder="Answer" required autocomplete="off" />
+	</div><br>	
+	<button type="submit" class="button button-block" onclick="update()">UPDATE</button>	
 	</div>			
-				
-		
-	
-
-
 </body>
 </html>

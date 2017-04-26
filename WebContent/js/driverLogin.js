@@ -1,11 +1,10 @@
 $(document).ready(function () {
 	$("#submit").click(function(){
 		validate();
-	});
-	
-	
+	});	
 });
 
+//Function to validate the input data
 function validate()
 {
 	var id = $("#userid").val();
@@ -63,7 +62,8 @@ function validate()
 				+ driverId + "&password=" + password,
 		type : "GET",
 		contentType :"application/json",
-		success : function(resultData) {
+		success : function(driver) {
+			localStorage.setItem("Name",driver.name);
 			window.location.href = "http://localhost:8080/GoatRunner/Rides.html"
 		},
 		error: function(data){

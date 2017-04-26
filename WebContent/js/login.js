@@ -70,6 +70,16 @@ function validate()
 		type : "GET",
 		contentType :"application/json",
 		success : function(resultData) {
+			localStorage.setItem("Name",resultData.name);
+			localStorage.setItem("StudentID",resultData.student_id);
+			localStorage.setItem("password",resultData.password);
+			localStorage.setItem("Phone",resultData.phone_number);
+			localStorage.setItem("Address",resultData.address);
+			localStorage.setItem("Fav",resultData.favourite_location);
+			localStorage.setItem("Email",resultData.email_id);
+			localStorage.setItem("Security",resultData.security_question);
+			localStorage.setItem("Answer",resultData.answer);
+			
 			window.location.href = "http://localhost:8080/GoatRunner/BookingPage.html"
 		},
 		error: function(data){

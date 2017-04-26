@@ -63,7 +63,7 @@
 	//Display the map on page load
 	if (navigator.geolocation) 
 		{
-			var x = localStorage.getItem("StudentID");
+			var x = localStorage.getItem("Name");
 			document.getElementById("log").innerHTML = "Logged in as: "+x+"  ";
 	
 			navigator.geolocation.getCurrentPosition(function(p) 
