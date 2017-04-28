@@ -74,7 +74,7 @@ function validate()
 			var data = JSON.parse(resultData);
 			console.log(data.student_id);
 			
-			localStorage.setItem("Name",data.student_id);
+			localStorage.setItem("Name",data.name);
 			localStorage.setItem("studentId",data.student_id);
 			
 			localStorage.setItem("password",data.password);

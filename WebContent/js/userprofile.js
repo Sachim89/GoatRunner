@@ -30,7 +30,7 @@ $(document).ready(function(){
 
 //Logout functionality
 function logout(){
-	if(!confirm("Do you want to logout?")){
+	if(confirm("Do you want to logout?")){
 		var id = localStorage.getItem("StudentID");
 			
 		$.ajax({
@@ -119,13 +119,23 @@ function validate()
 				"answer" : answer
 			};
 		$.ajax({
-			url: "http://localhost:8080/GoatRunner/application/user/signup",
+			url: "http://localhost:8080/GoatRunner/application/user/userprofile",
 			type: "POST",
 			data : JSON.stringify(j),
 			contentType :"application/json",
 			success: function(resultData) {
-				window.location.href = "http://localhost:8080/GoatRunner/BookingPage.html";
-					},
+				var data = JSON.parse(resultData);
+				
+				$('#StudentID').val(data.student_id);
+				$('#Name').val(data.name);
+				$('#Email').val(data.email_id);
+				$('#Password').val(data.password);
+				$("#Address").val(data.address);
+				$("#phone").val(data.phone_number);
+				$("#fav").val(data.favourite_location);
+				$("#questions").val(data.security_question);
+				$("#answer").val(data.answer);
+			},
 			error: function(data){
 				if(code == 400){
 					alert("Oops!! Somethings went wrong.. Please try after sometime");
