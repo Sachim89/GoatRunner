@@ -21,6 +21,7 @@ function validate()
 	var password = $("#password").val();
 	localStorage.setItem("StudentID",id);
 	
+	
 	//Check the Password and Student ID
 	if(id == "" && password == "")
 	{
@@ -70,15 +71,19 @@ function validate()
 		type : "GET",
 		contentType :"application/json",
 		success : function(resultData) {
-			localStorage.setItem("Name",resultData.name);
-			localStorage.setItem("StudentID",resultData.student_id);
-			localStorage.setItem("password",resultData.password);
-			localStorage.setItem("Phone",resultData.phone_number);
-			localStorage.setItem("Address",resultData.address);
-			localStorage.setItem("Fav",resultData.favourite_location);
-			localStorage.setItem("Email",resultData.email_id);
-			localStorage.setItem("Security",resultData.security_question);
-			localStorage.setItem("Answer",resultData.answer);
+			var data = JSON.parse(resultData);
+			console.log(data.student_id);
+			
+			localStorage.setItem("Name",data.student_id);
+			localStorage.setItem("studentId",data.student_id);
+			
+			localStorage.setItem("password",data.password);
+			localStorage.setItem("Phone",data.phone_number);
+			localStorage.setItem("Address",data.address);
+			localStorage.setItem("Fav",data.favourite_location);
+			localStorage.setItem("Email",data.email_id);
+			localStorage.setItem("Security",data.security_question);
+			localStorage.setItem("Answer",data.answer);
 			
 			window.location.href = "http://localhost:8080/GoatRunner/BookingPage.html"
 		},

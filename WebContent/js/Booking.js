@@ -43,7 +43,7 @@ function logout() {
 		} else {
 			window.location.href = "http://localhost:8080/GoatRunner/BookingPage.html"
 		}
-	 localStorage.removeItem("StudentID");
+	 localStorage.removeItem("studentId");
 }
 
 // Validate the given input data
@@ -324,7 +324,7 @@ function callDistance() {
 					var duration = response.rows[0].elements[0].duration.text;
 					var x = localStorage.getItem("StudentID");
 					var numPass = document.getElementById("numPass").value;
-
+					console.log(x);
 					var j = {
 							"studentId" : x,
 							"noOfPassengers" : numPass,

@@ -15,9 +15,7 @@ import com.GoatRunner.model.CurrentRides;
 
 public class AdminService {
 	
-	//to cancel a booking
-		@Path("/admin")
-		@GET
+	
 		public static List<CurrentRides> cancel(int cabNo) throws GoatRunnerException, SQLException {
 			ConnectionService connection = new ConnectionService();
 			Connection con = connection.createConnection();
@@ -25,15 +23,21 @@ public class AdminService {
 			PreparedStatement st= con.prepareStatement("SELECT DRIVERID FROM CAB WHERE CABNO= ?");
 			st.setInt(1, cabNo);
 			ResultSet rs = st.executeQuery();
-			int driverId = rs.getInt(1);
+			int driverId = 0;
+			if(rs!=null) {
+				while(rs.next()) {
+					driverId= rs.getInt(1);
+				}
+			}
+			
 			st.close();
 			PreparedStatement st1 = con.prepareStatement("SELECT * FROM CURRENTRIDES WHERE DRIVERID = ? ");
 			st1.setInt(1, driverId);
-			ResultSet rs1 = st.executeQuery();
+			ResultSet rs1 = st1.executeQuery();
 			List<CurrentRides> list = new ArrayList<CurrentRides>();
-			rs1.beforeFirst();
+			//rs1.beforeFirst();
 				if (rs1 != null){
-					while (rs.next())
+					while (rs1.next())
 				{
 				CurrentRides current = new CurrentRides();
 				current.setBookingId(rs1.getInt(1));

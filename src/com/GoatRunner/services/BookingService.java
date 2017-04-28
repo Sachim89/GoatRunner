@@ -148,8 +148,8 @@ public class BookingService {
 			while (rs.next()) {
 				List<Integer> cabLocations = new ArrayList<>();
 				cabNo = rs.getInt(1);
-				double lat1 = rs.getDouble(5);
-				double long1 = rs.getDouble(6);
+				double long1 = rs.getDouble(5);
+				double lat1 = rs.getDouble(6);
 				cabDistList.put(cabNo, LocationUtil.getDistance(lat1, long1, bookingDetails.getDouble("sourceLatitude"),
 						bookingDetails.getDouble("sourceLongitude")));
 				cabTimeList.put(cabNo, LocationUtil.getTime(lat1, long1, bookingDetails.getDouble("sourceLatitude"),
@@ -161,15 +161,21 @@ public class BookingService {
 		Iterator it = cabDistList.entrySet().iterator();
 		Collection<Integer> list = cabDistList.values();
 		double minDistance = list.iterator().next();
+		int currentCab = 0;
 		int optimalCabNo = 0;
 		while (it.hasNext()) {
+			
 			Map.Entry pair = (Map.Entry) it.next();
 			int D = (int) pair.getValue();
 			if (minDistance >= D) {
 				minDistance = D;
+				currentCab = (int) pair.getKey();
 			}
 			// minDistance = D;
-			optimalCabNo = (int) pair.getKey();
+			if(D == minDistance) {
+				optimalCabNo = currentCab;
+			}
+			
 			System.out.println(pair.getKey() + " = " + D);
 		}
 

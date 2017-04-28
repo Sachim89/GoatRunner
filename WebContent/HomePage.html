@@ -1,90 +1,139 @@
-<!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<meta charset="ISO-8859-1">
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link href="css/HomePage.css" rel="stylesheet">
-<link href="css/AbtTeam.css" rel="stylesheet">
-<title>Goat Runner</title>
-<style>
-#map {
-	width: 100%;
-	height: 400px;
-	background-color: grey;
-}
-</style>
+<meta name="description" content="">
+<meta name="author" content="">
+
+
+
+<!-- Bootstrap Core CSS -->
+<link href="css/bootstrap.min.css" rel="stylesheet">
+
+<!-- Custom Fonts -->
+<link href="vendor/font-awesome/css/font-awesome.min.css"
+	rel="stylesheet" type="text/css">
+<link
+	href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800"
+	rel="stylesheet" type="text/css">
+<link
+	href="https://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic,900,900italic"
+	rel="stylesheet" type="text/css">
+
+<!-- Plugin CSS -->
+<link href="vendor/magnific-popup/magnific-popup.css" rel="stylesheet">
+
+<!-- Theme CSS -->
+<link href="css/creative.min.css" rel="stylesheet">
+
+
 </head>
-<body>
-	<div id="Navigation">
-		<ul>
-			<li><a class="active">Home</a></li>
-			<li><a href="#about" class="about">About</a></li>
-			<li><a href="#contact" class="contact">Contact</a></li>
-			<li><a href="LoginPage.html" class="Login">Login</a></li>
-			<li><a href= "DriverSignIn.html" class="DriverSignIn">Driver Sign In</a></li>
-			<li><a href= "SignUp.html" class="SignUp">Sign Up</a></li>
-		</ul>
-		<a href="Admin.html"><img src='images/admin.png' style="float:right; margin-top:-50px; height: 50px; width: 50px;"> </a>
-	</div>
-<div class="bgimg-1"></div>
-<!-- About section-->
- <div id="about">
- <div class="gr-main gr-content gr-padding" style="max-width:2000px;margin-left: 200px;margin-bottom: 200px">
-   <h1 style="margin-left: 300px;">ABOUT GOAT RUNNER</h1>
-   <div class="gr-row-padding gr-padding-16 gr-center" >
-    <div class="gr-quarter">
-      <img src="images/Passion.png" alt="Passion" style="width:30%">
-      <h3>Passion</h3>
-      <p>GoatRunner is a Shuttle service web application to manage university provided shuttle services. 
-       This application would enable the students to book cab services at any time of the day.</p>
-    </div> 
-    <div class="gr-quarter">
-      <img src="images/Responsive.png" alt="Responsive" style="width:30%">
-      <h3>Responsive</h3>
-      <p>GoatRunner's User Interface contains flexible layouts, flexible images and cascading style sheets. 
-      This responsive design builds web pages that detect the visitor's 
-      screen size and orientation and change the layout accordingly.</p>
-    </div>
-    <div class="gr-quarter">
-      <img src="images/Design.png" alt="Design" style="width:30%">
-      <h3>Design</h3>
-      <p>GoatRunner's webpage design is designed to be appealing and user friendly
-      and uses interactive features that deliver pages to your site visitors.</p>
-    </div>
-    </div>
-  </div>
-</div>
 
-<!-- Contact -->
-<div id="contact">
-<h1 align="center">CONTACT US</h1>
-		<!-- Division to display the required fields -->
-		<pre style="font-family: fantasy; text-align:justify; margin-top: 40px; margin-left: 100px">
-		Worcester Polytechnic Institute,
-		100 Institute Rd, 
-		Worcester, 
-		MA 01609 
-		</pre>
-	<button id="submit" class="requestBtn" onclick="mailto()">Mail To</button>
-<div id="map" style="margin-top:70px;margin-bottom:100px; margin-right:40px; width: 600px; height: 400px; float: right;"></div>	
-<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?&key=AIzaSyAT6aVkKBBF-TSTXrclwuDV9xQx8TUbMao&sensor=false"></script>
-<script type="text/javascript">
-	  var myLatLng = {lat: 42.274751, lng: -71.807300};
+<body id="page-top">
+	<nav class="navbar navbar-inverse bg-faded" id="Navigation">
+		<a class="navbar-brand" href="active">Home</a> <a class="navbar-brand"
+			href="#about">About</a> <a class="navbar-brand" href="#contact">Contact</a>
+		<a class="navbar-brand" href="LoginPage.html">Login</a> <a
+			class="navbar-brand" href="DriverSignIn.html">Driver Sign In</a> <a
+			class="navbar-brand" href="SignUp.html">Sign Up</a>
+	</nav>
 
-	  var map = new google.maps.Map(document.getElementById('map'), {
-	    zoom: 15,
-	    center: myLatLng
-	  });
+	<header>
+		<div class="header-content">
+			<div class="header-content-inner">
+				
+			</div>
+		</div>
+	</header>
 
-	  var marker = new google.maps.Marker({
-	    position: myLatLng,
-	    map: map,
-	  });
-	  function mailto()
-	  {
-		  window.location.href = "mailto:xyz@abc.com";
-	  }
-</script>
-</div>
+	<section class="bg-primary" style="background-color: #800000;"about">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-8 col-lg-offset-2 text-center">
+					<h2 class="section-heading" style="color:#9d9d9d">About</h2>
+					<hr class="light">
+					<div class="list-group">
+						<div class="col-sm-4">
+							<img src="images/Passion.png" alt="Passion" style="width: 30%; color:#9d9d9d">
+							<h3 style="color:#9d9d9d" >Passion</h3>
+							<p style="color:#9d9d9d">GoatRunner is a Shuttle service web application to manage
+								university provided shuttle services. This application would
+								enable the students to book cab services at any time of the day.</p>
+						</div>
+
+						<div class="col-sm-4">
+							<img src="images/Responsive.png" alt="Responsive"
+								style="width: 30%">
+							<h3 style="color:#9d9d9d">Responsive</h3>
+							<p style="color:#9d9d9d">GoatRunner's User Interface contains flexible layouts,
+								flexible images and cascading style sheets. This responsive
+								design builds web pages that detect the visitor's screen size
+								and orientation and change the layout accordingly.</p>
+						</div>
+						<div class="col-sm-4">
+							<img src="images/Design.png" alt="Design" style="width: 30%">
+							<h3 style="color:#9d9d9d">Design</h3>
+							<p style="color:#9d9d9d">GoatRunner's webpage design is designed to be appealing
+								and user friendly and uses interactive features that deliver
+								pages to your site visitors.</p>
+						</div>
+					</div>
+
+				</div>
+			</div>
+		</div>
+		</div>
+	</section>
+
+	
+	
+
+
+	
+
+
+
+	
+	<section id="contact">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-8 col-lg-offset-2 text-center">
+					<h2 class="section-heading">Contact</h2>
+
+				</div>
+				<div class="col-lg-4 col-lg-offset-2 text-center">
+					<i class="fa fa-phone fa-3x sr-contact" data-sr-id="3"
+						style="visibility: visible; -webkit-transform: scale(1); opacity: 1; transform: scale(1); opacity: 1; -webkit-transition: -webkit-transform 0.6s cubic-bezier(0.6, 0.2, 0.1, 1) 0s, opacity 0.6s cubic-bezier(0.6, 0.2, 0.1, 1) 0s; transition: transform 0.6s cubic-bezier(0.6, 0.2, 0.1, 1) 0s, opacity 0.6s cubic-bezier(0.6, 0.2, 0.1, 1) 0s;"></i>
+					<p>774-701-2577</p>
+				</div>
+				<div class="col-lg-4 text-center">
+					<i class="fa fa-envelope-o fa-3x sr-contact" data-sr-id="4"
+						style="visibility: visible; -webkit-transform: scale(1); opacity: 1; transform: scale(1); opacity: 1; -webkit-transition: -webkit-transform 0.6s cubic-bezier(0.6, 0.2, 0.1, 1) 0s, opacity 0.6s cubic-bezier(0.6, 0.2, 0.1, 1) 0s; transition: transform 0.6s cubic-bezier(0.6, 0.2, 0.1, 1) 0s, opacity 0.6s cubic-bezier(0.6, 0.2, 0.1, 1) 0s;"></i>
+					<p>arlad@wpi.edu</p>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- jQuery -->
+	<script src="vendor/jquery/jquery.min.js"></script>
+
+	<!-- Bootstrap Core JavaScript -->
+	<script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+
+	<!-- Plugin JavaScript -->
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
+	<script src="vendor/scrollreveal/scrollreveal.min.js"></script>
+	<script src="vendor/magnific-popup/jquery.magnific-popup.min.js"></script>
+
+	<!-- Theme JavaScript -->
+	<script src="js/creative.min.js"></script>
+
+
+
+
 </body>
 </html>

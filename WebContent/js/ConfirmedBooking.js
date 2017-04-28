@@ -48,7 +48,7 @@ $(document).ready(function() {
 			});
 		});
 
-		var time = setTimeout(disable, 9000);
+		var time = setTimeout(disable, 120000);
 		document.getElementById("log").innerHTML = "Logged in as: "+ x + "  ";
 
 		function disable() {
