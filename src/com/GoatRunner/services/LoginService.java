@@ -45,7 +45,7 @@ public class LoginService {
 					user.setAddress(resultSet.getString(5));
 					user.setEmail_id(resultSet.getString(7));
 					user.setFavourite_location(resultSet.getString(6));
-
+					user.setPassword(resultSet.getString(3));
 					user.setPhone_number(resultSet.getString(4));
 					user.setStudent_id(resultSet.getInt(1));
 				}

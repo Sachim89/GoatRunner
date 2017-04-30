@@ -15,8 +15,6 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
 
-
-
 import com.GoatRunner.exception.GoatRunnerException;
 import com.GoatRunner.model.User;
 import com.GoatRunner.services.LoginService;
@@ -24,7 +22,6 @@ import com.GoatRunner.services.LoginService;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.gson.Gson;
-
 
 @Path("/user")
 public class LoginController {
@@ -68,13 +65,13 @@ public class LoginController {
 	public Response signUp(String userString) {
 		Gson g = new Gson();
 		User user = g.fromJson(userString, User.class);
-		/*System.out.println("Entered");
+		System.out.println("Entered");
 		try {
 			LoginService.signup(user);
 		} catch (GoatRunnerException | SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}*/
+		}
 		return Response.status(Status.OK).build();
 	}
 

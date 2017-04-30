@@ -27,7 +27,7 @@ import com.google.gson.Gson;
  *
  */
 @Path("/update")
-public class StudentProfileUpdateController {
+public class UpdateController {
 	
 	ObjectMapper mapper = new ObjectMapper();
 	
@@ -59,7 +59,8 @@ public class StudentProfileUpdateController {
 		}
 	
 	@Path("/update_password")
-	@GET
+	@POST
+	@Consumes({ MediaType.APPLICATION_JSON })
 	public Response updatePassword(@QueryParam("userId") int studentId, @QueryParam("password") String password) {
 		System.out.println("Entered");
 		String response = "";

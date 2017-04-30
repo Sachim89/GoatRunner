@@ -18,7 +18,7 @@ $(document).ready(function () {
 
 function validate()
 {
-	var id = $("#stud_id").val();
+	var id = $("#StudentID").val();
 	var password = $("#password").val();
 	if(id == "" && password == "")
 	{
@@ -56,11 +56,11 @@ function validate()
 			}
 	}
 	if(password.length >= 6 && id.length == 9){
-		var studentId = document.getElementById("stud_id").value;
+		var studentId = document.getElementById("StudentID").value;
 		var Newpassword = document.getElementById("password").value;
 		
 		$.ajax({
-			url : "http://localhost:8080/GoatRunner/application/user/login?userId="
+			url : "http://localhost:8080/GoatRunner/application/update/update_password?userId="
 					+ studentId + "&password=" + Newpassword,
 			type : "POST",
 			contentType :"application/json",

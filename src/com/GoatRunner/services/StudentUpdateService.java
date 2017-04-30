@@ -38,6 +38,7 @@ public class StudentUpdateService {
 			PreparedStatement st = con.prepareStatement("UPDATE PASSENGER SET pwd=? WHERE studentId = ?");
 			st.setString(1, password);
 			st.setInt(2, userid);
+			st.executeQuery();
 			
 		
 	}

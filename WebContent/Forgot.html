@@ -2,42 +2,102 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Forgot Password Form</title>
-<link href="style.css" rel="stylesheet">
+<title>Sign-Up/Login Form</title>
+<link href="css/common.css" rel="stylesheet">
+<link
+	href='http://fonts.googleapis.com/css?family=Titillium+Web:400,300,600'
+	rel='stylesheet' type='text/css'>
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+<!-- Bootstrap Core CSS -->
+<link href="css/bootstrap.min.css" rel="stylesheet">
+
+
+<!-- Custom Fonts -->
+<link href="vendor/font-awesome/css/font-awesome.min.css"
+	rel="stylesheet" type="text/css">
+<link
+	href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800"
+	rel="stylesheet" type="text/css">
+<link
+	href="https://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic,900,900italic"
+	rel="stylesheet" type="text/css">
+
+<!-- Plugin CSS -->
+<link href="vendor/magnific-popup/magnific-popup.css" rel="stylesheet">
+
+<!-- Theme CSS -->
+<link href="css/creative.min.css" rel="stylesheet">
 </head>
-
 <body>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<!-- Script for handling the input values to be sent to server in JSON format -->
-<script src="forgot.js"></script>
+	<script
+		src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+	<script
+		src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script src="js/forgot.js"></script>
 
-<!-- Tab for displaying SignUp or Login -->
-<div class="form">
-<!-- Division for Login function -->
-<div>
-<div id="forgot">
-	<h2 align="center" style="color: #800000">UPDATE PASSWORD</h2>
-			<div class="field-wrap stud">
-				<label> Student ID<span class="req">*</span>
-				</label> <input type="number" id="stud_id" placeholder="Enter Student ID" required/>
+	<nav class="navbar navbar-inverse bg-faded" id="Navigation">
+		<a class="navbar-brand" href="active">Home</a> <a class="navbar-brand"
+			href="#about">About</a> <a class="navbar-brand" href="#contact">Contact</a>
+		<a class="navbar-brand" href="LoginPage.html">Login</a> <a
+			class="navbar-brand" href="DriverSignIn.html">Driver Sign In</a> <a
+			class="navbar-brand" href="SignUp.html">Sign Up</a>
+	</nav>
+
+
+	<div class="container">
+		<div class="row">
+			<div class="col-md-6">
+
+
+				<div id="legend">
+					<legend class="">Update Password</legend>
+				</div>
+				<div class="control-group">
+					<label for="StudentID" class="controls">Student ID <span
+						class="req">*</span></label>
+					<div class="controls">
+						<input type="number" id="StudentID" name="StudentID"
+							placeholder="" class="form-control input-lg"> <br>
+					</div>
+				</div>
+
+
+
+
+				<div class="control-group">
+					<label class="control-label" for="password">Password<span
+						class="req">*</span></label>
+					<div class="controls">
+						<input type="password" id="password" name="password"
+							placeholder="" class="form-control input-lg">
+						<p class="help-block">Password should be at least 6 characters</p>
+					</div>
+				</div>
+
+
+
+				<div id="loadingmessage"></div>
+
+
+
+
+
+
+
+
+
+				<div class="control-group">
+					<!-- Button -->
+					<div class="controls">
+						<button class="btn btn-success" id="UpdateButton">Update
+							Password</button>
+					</div>
+				</div>
+
+
 			</div>
-			<small><sup><span id="idrules">
-				<a href="#" style="color: red; text-decoration: underline;">?</a>
-			</span></sup></small>
-				
-			<div class="field-wrap pass">
-				<label> New Password<span class="req">*</span>
-				</label> <input type="password" id="password" placeholder="Enter Password" required/>
-			</div>
-			<small><sup><span id="passrules">
-				<a href="#" style="color: red; text-decoration: underline;">?</a>
-			</span></sup></small>
-			<br> <br>
-			
-			<button class="button button-block" id="UpdateButton">Update</button>
-		
+		</div>
 	</div>
-</div> <!-- Ending the Login content -->
-</div> <!-- Ending the Tab content -->
 </body>
 </html>
