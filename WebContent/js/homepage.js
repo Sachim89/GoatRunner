@@ -501,9 +501,7 @@ var camera = {
 	  		{text:"GOATRUNNER", sphereRadius:140, sphereSpace:80, unitTime:100, time:1000},
 	  		{text:"SHUTTLE", sphereRadius:120, sphereSpace:70, unitTime:120, time:4000},
 	  		{text:"SERVICE", sphereRadius:120, sphereSpace:70, unitTime:50, time:2000},
-	  		{text:"WEB", sphereRadius:120, sphereSpace:70, unitTime:100, time:4000},
-	  		{text:"APPLICATION", sphereRadius:120, sphereSpace:70, unitTime:100, time:5000},
-	  		{text:"APPLICATION", sphereRadius:120, sphereSpace:70, unitTime:100, time:5000},
+	  		{text:"SERVICE", sphereRadius:120, sphereSpace:70, unitTime:50, time:2000},
 	  	  	];
 	  	
 	  	var textSetChangerIncrement = 0;
