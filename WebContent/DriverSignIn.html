@@ -36,58 +36,49 @@
 </head>
 
 <body id="page-top">
-	<script src="js/driverLogin.js"></script>
+<script src="js/driverLogin.js"></script>
 
+<nav class="navbar navbar-inverse bg-faded" id="Navigation">
+	<a class="navbar-brand" href="HomePage.html">Home</a> 
+	<a class="navbar-brand" href="DriverSignIn.html">Driver Sign In</a>
+</nav>
 
-	<nav class="navbar navbar-inverse bg-faded" id="Navigation">
-		<a class="navbar-brand" href="HomePage.html">Home</a> <a
-			class="navbar-brand" href="DriverSignIn.html">Driver Sign In</a>
-	</nav>
-
-	<div class="container" style="margin-right: 0px; margin-left: 30%;">
-		<div class="row">
-			<div class="col-md-6">
-				<div class="well well-sm">
-					<form class="form-horizontal" method="post">
-						<fieldset>
-							<legend class="text-center header">Driver Login</legend>
-							<div class="form-group">
-								<div class="col-md-10 col-md-offset-1">
-									<label for="userid" class="controls">Driver ID <span
-										class="req">*</span></label> <input id="userid" name="StudentID"
-										type="number" class="form-control">
-									<p class="help-block">Driver ID must be 3 digits</p>
+<div class="container" style="margin-right: 0px; margin-left: 30%;">
+	<div class="row">
+		<div class="col-md-6">
+			<div class="well well-sm">
+				<form class="form-horizontal" method="post">
+					<fieldset>
+						<legend class="text-center header">Driver Login</legend>
+						<div class="form-group">
+							<div class="col-md-10 col-md-offset-1">
+								<label for="userid" class="controls">Driver ID <span
+									class="req">*</span></label> <input id="userid" name="StudentID"
+									type="number" class="form-control">
+								<p class="help-block">Driver ID must be 3 digits</p>
+							</div>
+						</div>
+						
+						<div class="form-group">
+							<div class="col-md-10 col-md-offset-1">
+								<label for="password" class="controls">Password <span
+									class="req">*</span></label> <input id="password" name="password"
+									type="password" class="form-control">
+								<p class="help-block">Password should be at least 3
+									characters</p>
+							</div>
+							<div id="loadingmessage"></div>
+							<div class="control-group">
+								<div class="col-sm-10 col-md-offset-5"">
+									<a id="submit" href="#" class="btn btn-success">Login </a>
 								</div>
 							</div>
-							<div class="form-group">
-								<div class="col-md-10 col-md-offset-1">
-									<label for="password" class="controls">Password <span
-										class="req">*</span></label> <input id="password" name="password"
-										type="password" class="form-control">
-									<p class="help-block">Password should be at least 3
-										characters</p>
-								</div>
-
-
-								<div id="loadingmessage"></div>
-								
-								
-								<div class="control-group">
-									<div class="col-sm-10 col-md-offset-5"">
-										<a id="submit" href="#" class="btn btn-success">Login </a>
-
-									</div>
-
-								</div>
-						</fieldset>
-					</form>
-				</div>
+						</div>
+					</fieldset>
+				</form>
 			</div>
-
-
-
-
 		</div>
 	</div>
+</div>
 </body>
 </html>

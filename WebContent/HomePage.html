@@ -8,7 +8,6 @@
 <meta name="author" content="">
 
 
-
 <!-- Bootstrap Core CSS -->
 <link href="css/bootstrap.min.css" rel="stylesheet">
 
@@ -31,6 +30,7 @@
 </head>
 
 <body id="page-top">
+	
 	<nav class="navbar navbar-inverse bg-faded" id="Navigation">
 		<a class="navbar-brand" href="HomePage.html">Home</a> <a class="navbar-brand"
 			href="#about">About</a> <a class="navbar-brand" href="#contact">Contact</a>
@@ -39,15 +39,15 @@
 		<a class="navbar-brand" href="SignUp.html">Student Sign Up</a>
 		<a class="navbar-brand" href="Admin.html">Admin</a>
 	</nav>
-
-	<header>
+	<canvas id="canvas" style="position:absolute; top:0; left:0; margin-top: 50px;"></canvas>
+	<div id="buffer" style="display:none; height: 1000px;"></div>
+	
+		<header>
 		<div class="header-content">
 			<div class="header-content-inner">
-				
 			</div>
 		</div>
 	</header>
-
 	<section class="bg-primary" style="background-color: #800000;" id="about">
 		<div class="container">
 			<div class="row">
@@ -91,17 +91,22 @@
 			<div class="row">
 				<div class="col-lg-8 col-lg-offset-2 text-center">
 					<h2 class="section-heading">Contact</h2>
-
 				</div>
 				<div class="col-lg-4 col-lg-offset-2 text-center">
 					<i class="fa fa-phone fa-3x sr-contact" data-sr-id="3"
 						style="visibility: visible; -webkit-transform: scale(1); opacity: 1; transform: scale(1); opacity: 1; -webkit-transition: -webkit-transform 0.6s cubic-bezier(0.6, 0.2, 0.1, 1) 0s, opacity 0.6s cubic-bezier(0.6, 0.2, 0.1, 1) 0s; transition: transform 0.6s cubic-bezier(0.6, 0.2, 0.1, 1) 0s, opacity 0.6s cubic-bezier(0.6, 0.2, 0.1, 1) 0s;"></i>
 					<p>774-701-2577</p>
+					<p>774-253-7536</p>
+					<p>202-709-0071</p>
+					<p>781-845-1546</p>
 				</div>
 				<div class="col-lg-4 text-center">
 					<i class="fa fa-envelope-o fa-3x sr-contact" data-sr-id="4"
 						style="visibility: visible; -webkit-transform: scale(1); opacity: 1; transform: scale(1); opacity: 1; -webkit-transition: -webkit-transform 0.6s cubic-bezier(0.6, 0.2, 0.1, 1) 0s, opacity 0.6s cubic-bezier(0.6, 0.2, 0.1, 1) 0s; transition: transform 0.6s cubic-bezier(0.6, 0.2, 0.1, 1) 0s, opacity 0.6s cubic-bezier(0.6, 0.2, 0.1, 1) 0s;"></i>
 					<p>arlad@wpi.edu</p>
+					<p>jguram@wpi.edu</p>
+					<p>rkiran@wpi.edu</p>
+					<p>smanoharan@wpi.edu</p>
 				</div>
 			</div>
 		</div>
@@ -121,7 +126,7 @@
 
 	<!-- Theme JavaScript -->
 	<script src="js/creative.min.js"></script>
-
+	<script src="js/homepage.js"></script>
 
 
 

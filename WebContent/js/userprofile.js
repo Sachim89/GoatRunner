@@ -33,25 +33,24 @@ function logout() {
 	if (confirm("Do you want to logout?")) {
 		var id = localStorage.getItem("#StudentID");
 
-		$
-				.ajax({
-					url : "http://localhost:8080/GoatRunner/application/user/logout?userId="
-							+ id,
-					type : "POST",
-					data : JSON.stringify(j),
-					contentType : "application/json",
-					success : function(resultData) {
-						window.location.href = "http://localhost:8080/GoatRunner/ConfirmedBooking.html"
-					},
-					error : function(data) {
-						if (code == 400) {
-							alert("Oops!! Somethings went wrong.. Please try after sometime");
-						}
-						if (code == 500) {
-							alert("Oops!! Somethings went wrong.. Please try after sometime");
-						}
-					}
-				});
+		$.ajax({
+			url : "http://localhost:8080/GoatRunner/application/user/logout?userId="
+					+ id,
+			type : "POST",
+			data : JSON.stringify(j),
+			contentType : "application/json",
+			success : function(resultData) {
+				window.location.href = "http://localhost:8080/GoatRunner/ConfirmedBooking.html"
+			},
+			error : function(data) {
+				if (code == 400) {
+					alert("Oops!! Somethings went wrong.. Please try after sometime");
+				}
+				if (code == 500) {
+					alert("Oops!! Somethings went wrong.. Please try after sometime");
+				}
+			}
+		});
 	} else {
 		window.location.href = "http://localhost:8080/GoatRunner/HomePage.html"
 	}
@@ -121,34 +120,33 @@ function validate() {
 			/*"security_question" : quest,
 			"answer" : answer*/
 		};
-		$
-				.ajax({
-					url : "http://localhost:8080/GoatRunner/application/update/update_details",
-					type : "POST",
-					data : JSON.stringify(j),
-					contentType : "application/json",
-					success : function(resultData) {
-						var data = JSON.parse(resultData);
+		$.ajax({
+			url : "http://localhost:8080/GoatRunner/application/update/update_details",
+			type : "POST",
+			data : JSON.stringify(j),
+			contentType : "application/json",
+			success : function(resultData) {
+				var data = JSON.parse(resultData);
 
-						$('#StudentID').val(data.student_id);
-						$('#name').val(data.name);
-						$('#email').val(data.email_id);
-						$('#password').val(data.password);
-						$("#address").val(data.address);
-						$("#phone_number").val(data.phone_number);
-						$("#fav_location").val(data.favourite_location);
-					//	$("#questions").val(data.security_question);
-						// $("#answer").val(data.answer);
-						window.location.href = "http://localhost:8080/GoatRunner/LoginPage.html";
-					},
-					error : function(data) {
-						if (code == 400) {
-							alert("Oops!! Somethings went wrong.. Please try after sometime");
-						}
-						if (code == 500) {
-							alert("Oops!! Somethings went wrong.. Please try after sometime");
-						}
-					}
-				});
+				$('#StudentID').val(data.student_id);
+				$('#name').val(data.name);
+				$('#email').val(data.email_id);
+				$('#password').val(data.password);
+				$("#address").val(data.address);
+				$("#phone_number").val(data.phone_number);
+				$("#fav_location").val(data.favourite_location);
+			//	$("#questions").val(data.security_question);
+				// $("#answer").val(data.answer);
+				window.location.href = "http://localhost:8080/GoatRunner/LoginPage.html";
+			},
+			error : function(data) {
+				if (code == 400) {
+					alert("Oops!! Somethings went wrong.. Please try after sometime");
+				}
+				if (code == 500) {
+					alert("Oops!! Somethings went wrong.. Please try after sometime");
+				}
+			}
+		});
 	}
 }

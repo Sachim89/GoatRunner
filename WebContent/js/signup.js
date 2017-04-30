@@ -1,22 +1,15 @@
-$(document)
-		.ready(
-				function() {
-					$("#GetStarted").click(function() {
-						console.log("Entered signup.js")
-						validate();
-					});
+$(document).ready(function() {
+	$("#GetStarted").click(function() {
+		console.log("Entered signup.js")
+		validate();
+	});
 
-					// Displays the rules for Student ID when mouse pointer is
-					// over ?
-					$("#rules")
-							.hover(
-									function() {
-										$(this)
-												.html(
-														$('<span style="color:red;">Student ID should be 9 digits and Password should be minimum 6 characters</span>'))
-									});
+/*	// Displays the rules for Student ID when mouse pointer is  over ?
+	$("#rules").hover(function() {
+		$(this).html($('<span style="color:red;">Student ID should be 9 digits and Password should be minimum 6 characters</span>'))
+	});*/
 
-				});
+});
 
 function validate() {
 	var id = $("#StudentID").val();
@@ -83,23 +76,22 @@ function validate() {
 		$('#loadingmessage').show();
 		
 		
-		$
-				.ajax({
-					url : "http://localhost:8080/GoatRunner/application/user/signup",
-					type : "POST",
-					data : JSON.stringify(j),
-					contentType : "application/json",
-					success : function(resultData) {
-						window.location.href = "http://localhost:8080/GoatRunner/LoginPage.html";
-					},
-					error : function(data) {
-						if (code == 400) {
-							alert("Oops!! Somethings went wrong.. Please try after sometime");
-						}
-						if (code == 500) {
-							alert("Oops!! Somethings went wrong.. Please try after sometime");
-						}
-					}
-				});
+		$.ajax({
+			url : "http://localhost:8080/GoatRunner/application/user/signup",
+			type : "POST",
+			data : JSON.stringify(j),
+			contentType : "application/json",
+			success : function(resultData) {
+				window.location.href = "http://localhost:8080/GoatRunner/LoginPage.html";
+			},
+			error : function(data) {
+				if (code == 400) {
+					alert("Oops!! Somethings went wrong.. Please try after sometime");
+				}
+				if (code == 500) {
+					alert("Oops!! Somethings went wrong.. Please try after sometime");
+				}
+			}
+		});
 	}
 }

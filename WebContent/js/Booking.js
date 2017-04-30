@@ -1,35 +1,24 @@
-$(document)
-		.ready(
-				function() {
-					// Validates the form before sending the requests
-					$("#request").click(function() {
-						validate();
-					});
+$(document).ready(function() {
+	// Validates the form before sending the requests
+	$("#request").click(function() {
+		validate();
+	});
 
-					// Informs the user to find the location in map
-					$("#toLocate")
-							.hover(
-									function() {
-										$(this)
-												.html(
-														$('<span style="color:red;">Press enter in text box to locate in Map</span>'));
-									});
+/*	// Informs the user to find the location in map
+	$("#toLocate").hover(function() {
+		$(this).html($('<span style="color:red;">Press enter in text box to locate in Map</span>'));
+	});
 
-					// Displays the rules for password when mouse pointer is
-					// over ?
-					$("#fromLocate")
-							.hover(
-									function() {
-										$(this)
-												.html(
-														$('<span style="color:red;">Press enter check the route</span>'));
-									});
+	// Displays the rules for password when mouse pointer is over ?
+	$("#fromLocate").hover(function() {
+		$(this).html($('<span style="color:red;">Press enter check the route</span>'));
+	});*/
 
-					// Logout
-					$("#logout").click(function() {
-						logout();
-					});
-				});
+	// Logout
+	$("#logout").click(function() {
+		logout();
+	});
+});
 
 // Logout functionality
 function logout() {
@@ -92,7 +81,7 @@ function validate() {
 			localStorage.setItem("fromLocate", from);
 			localStorage.setItem("numPass", numPass);
 
-			// Functioncall to send the required data
+			// Function call to send the required data
 			callDistance();
 
 			// Send the User ID to service layer
@@ -129,24 +118,23 @@ function validate() {
 				"cancel" : true
 			}
 
-			$
-					.ajax({
-						url : "http://localhost:8080/GoatRunner/application/user/bookingCancel",
-						type : "GET",
-						data : JSON.stringify(j),
-						contentType : "application/json",
-						success : function(resultData) {
-							window.location.href = "http://localhost:8080/GoatRunner/BookingPage.html"
-						},
-						error : function(data) {
-							if (code == 400) {
-								alert("Oops!! Somethings went wrong.. Please try after sometime");
-							}
-							if (code == 500) {
-								alert("Oops!! Somethings went wrong.. Please try after sometime");
-							}
-						}
-					});
+			$.ajax({
+				url : "http://localhost:8080/GoatRunner/application/user/bookingCancel",
+				type : "GET",
+				data : JSON.stringify(j),
+				contentType : "application/json",
+				success : function(resultData) {
+					window.location.href = "http://localhost:8080/GoatRunner/BookingPage.html"
+				},
+				error : function(data) {
+					if (code == 400) {
+						alert("Oops!! Somethings went wrong.. Please try after sometime");
+					}
+					if (code == 500) {
+						alert("Oops!! Somethings went wrong.. Please try after sometime");
+					}
+				}
+			});
 		}
 	}
 }

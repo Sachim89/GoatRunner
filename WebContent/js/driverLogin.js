@@ -49,25 +49,24 @@ function validate() {
 		localStorage.setItem("driverId", driverId);
 		localStorage.setItem("driverPassword", password);
 		
-		$
-				.ajax({
-					url : "http://localhost:8080/GoatRunner/application/driver/login_driver?driver_Id="
-							+ driverId + "&password=" + password,
-					type : "GET",
-					contentType : "application/json",
-					success : function(driver) {
-						var data = JSON.parse(driver);
-						localStorage.setItem("Name", data.name);
-						window.location.href = "http://localhost:8080/GoatRunner/Rides.html"
-					},
-					error : function(data) {
-						if (data == 400) {
-							alert("Oops!! Somethings went wrong.. Please try after sometime");
-						}
-						if (data == 500) {
-							alert("Oops!! Somethings went wrong.. Please try after sometime");
-						}
-					}
-				});
+		$.ajax({
+			url : "http://localhost:8080/GoatRunner/application/driver/login_driver?driver_Id="
+					+ driverId + "&password=" + password,
+			type : "GET",
+			contentType : "application/json",
+			success : function(driver) {
+				var data = JSON.parse(driver);
+				localStorage.setItem("Name", data.name);
+				window.location.href = "http://localhost:8080/GoatRunner/Rides.html"
+			},
+			error : function(data) {
+				if (data == 400) {
+					alert("Oops!! Somethings went wrong.. Please try after sometime");
+				}
+				if (data == 500) {
+					alert("Oops!! Somethings went wrong.. Please try after sometime");
+				}
+			}
+		});
 	}
 }

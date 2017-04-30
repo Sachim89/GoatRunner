@@ -1,31 +1,19 @@
-$(document)
-		.ready(
-				function() {
-					$("#loginButton").click(function() {
-						validate();
-					});
+$(document).ready(function() {
+		$("#loginButton").click(function() {
+			validate();
+		});
 
-					// Displays the rules for Student ID when mouse pointer is
-					// over ?
-					$("#idrules")
-							.hover(
-									function() {
-										$(this)
-												.html(
-														$('<span style="color:red;">Student ID should be 9 digits</span>'))
-									});
+	/*	// Displays the rules for Student ID when mouse pointer is over ?
+		$("#idrules").hover(function() {
+			$(this).html($('<span style="color:red;">Student ID should be 9 digits</span>'))
+		});
 
-					// Displays the rules for password when mouse pointer is
-					// over ?
-					$("#passrules")
-							.hover(
-									function() {
-										$(this)
-												.html(
-														$('<span style="color:red;">Password should be minimum 6 characters</span>'))
-									});
+		// Displays the rules for password when mouse pointer is over ?
+		$("#passrules").hover(function() {
+			$(this).html($('<span style="color:red;">Password should be minimum 6 characters</span>'))
+		});*/
 
-				});
+	});
 
 function validate() {
 	var id = $("#StudentID").val();
@@ -70,38 +58,36 @@ function validate() {
 		localStorage.setItem("StudentID", studentId);
 		$('#loadingmessage').show();
 
-		$
-				.ajax({
-					url : "http://localhost:8080/GoatRunner/application/user/login?userId="
-							+ studentId + "&password=" + password,
-					type : "GET",
-					contentType : "application/json",
-					success : function(resultData) {
-						var data = JSON.parse(resultData);
-						console.log(data.student_id);
+		$.ajax({
+			url : "http://localhost:8080/GoatRunner/application/user/login?userId="
+					+ studentId + "&password=" + password,
+			type : "GET",
+			contentType : "application/json",
+			success : function(resultData) {
+				var data = JSON.parse(resultData);
+				console.log(data.student_id);
 
-						localStorage.setItem("Name", data.name);
-						localStorage.setItem("studentId", data.student_id);
-						localStorage.setItem("password", data.password);
-						localStorage.setItem("Phone", data.phone_number);
-						localStorage.setItem("Address", data.address);
-						localStorage.setItem("Fav", data.favourite_location);
-						localStorage.setItem("Email", data.email_id);
-						localStorage
-								.setItem("Security", data.security_question);
-						localStorage.setItem("Answer", data.answer);
+				localStorage.setItem("Name", data.name);
+				localStorage.setItem("studentId", data.student_id);
+				localStorage.setItem("password", data.password);
+				localStorage.setItem("Phone", data.phone_number);
+				localStorage.setItem("Address", data.address);
+				localStorage.setItem("Fav", data.favourite_location);
+				localStorage.setItem("Email", data.email_id);
+				localStorage
+						.setItem("Security", data.security_question);
+				localStorage.setItem("Answer", data.answer);
 
-						window.location.href = "http://localhost:8080/GoatRunner/BookingPage.html"
-					},
-					error : function(data) {
-						if (data == 400) {
-							alert("Oops!! Somethings went wrong.. Please try after sometime");
-						}
-						if (data == 500) {
-							alert("Oops!! Somethings went wrong.. Please try after sometime");
-						}
-					}
-				});
-
+				window.location.href = "http://localhost:8080/GoatRunner/BookingPage.html"
+			},
+			error : function(data) {
+				if (data == 400) {
+					alert("Oops!! Somethings went wrong.. Please try after sometime");
+				}
+				if (data == 500) {
+					alert("Oops!! Somethings went wrong.. Please try after sometime");
+				}
+			}
+		});
 	}
 }

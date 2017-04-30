@@ -2,10 +2,6 @@ body, h1, h2, h3, h4, h5, h6 {
 	font-family: "Raleway", sans-serif
 }
 
-body, html {
-	height: 100%;
-	line-height: 1.8;
-}
 input[type=text], input[type=number] {
     width: 100%;
     padding: 12px 50px;
@@ -21,18 +17,28 @@ button {
     background-color: #800000;
     color: white;
     padding: 14px 20px;
-    margin: 8px 0;
+    margin-left: 100px ;
     border: none;
     cursor: pointer;
-    width: 100%;
+    width: 200px;
+}
+html {
+	height: 100%;
+	line-height: 1.8;
 }
 
+body {
+	padding: 0;
+	margin: 0;
+	overflow: hidden;
+	background-color: #ffffff;
+}
 .bgimg-1 {
 	background-position: center;
 	background-size: cover;
+	background-image: url("Logo.png");
 	min-height: 100%;
 	margin: auto;
-	background-image: url("Logo.png");
 }
 
 ul {
@@ -41,7 +47,7 @@ ul {
 	margin: 0;
 	padding: 0;
 	overflow: hidden;
-	background-color: black;
+	background-color: #ffffff;
 	margin-right: 70px;
 }
 
@@ -51,7 +57,7 @@ li {
 
 li a {
 	display: block;
-	color: white;
+	color: black;
 	text-align: center;
 	padding: 14px 16px;
 	text-decoration: none;
