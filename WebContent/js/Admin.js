@@ -9,19 +9,19 @@ $(document).ready(function() {
 	});
 
 	$("#cab3").click(function() {
-		fetchCab(3);
+		fetchCab(13);
 	});
 
 	$("#cab4").click(function() {
-		fetchCab(4);
+		fetchCab(14);
 	});
 
 	$("#cab5").click(function() {
-		fetchCab(5);
+		fetchCab(15);
 	});
 
 	$("#cab6").click(function() {
-		fetchCab(6);
+		fetchCab(16);
 	});
 });
 
@@ -36,8 +36,8 @@ function fetchCab(cabNo) {
 		type : "GET",
 		contentType : "application/json",
 		success : function(result) {
-			$("#rides tr").remove();
 			var data = JSON.parse(result);
+			$("#ridesTable tbody").remove();
 			var tr;
 			for (var i = 0; i < data.length; i++) {
 				var counter = data[i];

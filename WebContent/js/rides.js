@@ -81,7 +81,7 @@ function myFunction() {
 function getCab() {
 	var driverId = localStorage.getItem("userid");
 	var password = localStorage.getItem("driverPassword");
-	console.log(password);
+	console.log("Entered get cab");
 	$.ajax({
 		url : "http://localhost:8080/GoatRunner/application/driver/get_cab?driver_Id="
 				+ driverId + "&password=" + password,

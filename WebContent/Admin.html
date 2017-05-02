@@ -3,7 +3,6 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>Admin view</title>
-<link href="css/Admin.css" rel="stylesheet">
 <link
 	href='http://fonts.googleapis.com/css?family=Titillium+Web:400,300,600'
 	rel='stylesheet' type='text/css'>
@@ -11,32 +10,65 @@
 	href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
 <script
 	src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+<link href="css/bootstrap.min.css" rel="stylesheet">
+
+<!-- Custom Fonts -->
+<link href="vendor/font-awesome/css/font-awesome.min.css"
+	rel="stylesheet" type="text/css">
+<link
+	href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800"
+	rel="stylesheet" type="text/css">
+<link
+	href="https://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic,900,900italic"
+	rel="stylesheet" type="text/css">
+
+<!-- Plugin CSS -->
+<link href="vendor/magnific-popup/magnific-popup.css" rel="stylesheet">
+
+<!-- Theme CSS -->
+<link href="css/creative.min.css" rel="stylesheet">
+
 </head>
 <body>
+	<nav class="navbar navbar-inverse bg-faded" id="Navigation">
+		<a class="navbar-brand" href="HomePage.html">Home</a>
+		<a class="navbar-brand" href="https://public.tableau.com/profile/publish/DASH_5/Story1#!/publish-confirm">Statistics</a>
+	</nav>
 	<script src="js/Admin.js"></script>
-	<ul>
-		<li><a class="active" href="#">CABS</a></li>
-		<li><a id="cab1">CAB 1</a></li>
-		<li><a  id="cab2">CAB 2</a></li>
-		<li><a  id="cab3">CAB 3</a></li>
-		<li><a  id="cab4">CAB 4</a></li>
-		<li><a  id="cab5">CAB 5</a></li>
-		<li><a  id="cab6">CAB 6</a></li>
-	</ul>
+	<div class="container">
+		<div class="row">
+			<div class="col-md-3">
+				<div class="well well-sm">
+					<div class="list-group">
+						<a href="#" class="list-group-item" id=cab1> CAB 11 </a> <a
+							href="#" class="list-group-item list-group-item-action" id=cab2>CAB
+							12</a> <a href="#" class="list-group-item list-group-item-action"
+							id=cab3>CAB 13</a> <a href="#"
+							class="list-group-item list-group-item-action" id=cab4>CAB 14</a>
+						<a href="#" class="list-group-item list-group-item-action" id=cab5>CAB
+							15</a> <a href="#" class="list-group-item list-group-item-action"
+							id=cab6>CAB 16</a>
+					</div>
+				</div>
+			</div>
 
-	<div style="margin-left: 15%; padding: 1px 16px; height: 1000px;">
-		<h1 align="center" style="color: #800000">ADMIN VIEW</h1>
-		<table id="rides" cellpadding="5">
-			<thead>
-				<tr>
-					<th align="center">BOOKING ID</th>
-					<th align="center">STUDENT ID</th>
-					<th align="center">TO</th>
-					<th align="center">FROM</th>
-					<th align="center">DRIVER ID</th>
-				</tr>
-			</thead>
-		</table>
+
+			<div class="col-md-9">
+				<legend class="text-center header">Current Rides</legend>
+
+				<table class="table" id="ridesTable">
+					<thead>
+						<tr>
+							<th>BookingID</th>
+							<th>StudentID</th>
+							<th>TO</th>
+							<th>FROM</th>
+							<th>DRIVERID</th>
+						</tr>
+					</thead>
+				</table>
+			</div>
+		</div>
 	</div>
 
 </body>

@@ -103,10 +103,10 @@ public class BookingService {
 			preparedStatement.setInt(7, details.getNoofPassenges());
 			preparedStatement.setTimestamp(8, details.getBookingTime());
 			preparedStatement.setDate(9, details.getBookingDate());
-			preparedStatement.setDouble(10, details.getSourceLatitude());
-			preparedStatement.setDouble(11, details.getSourceLongitude());
-			preparedStatement.setDouble(12, details.getDestinationLatitude());
-			preparedStatement.setDouble(13, details.getDestinationLongitude());
+			preparedStatement.setDouble(10, details.getDestinationLatitude());
+			preparedStatement.setDouble(11, details.getDestinationLongitude());
+			preparedStatement.setDouble(12, details.getSourceLatitude());
+			preparedStatement.setDouble(13, details.getSourceLongitude());
 			preparedStatement.setString(14, details.getEstimatedTime());
 			preparedStatement.setInt(15, details.getBookingStatus());
 			preparedStatement.executeUpdate();
@@ -121,9 +121,12 @@ public class BookingService {
 			 * if (generatedKeys.next()) { // generatedKeys.getLong(1); }
 			 */
 
-			/*preparedStatement = conn.prepareStatement("UPDATE CAB SET NOOFPASSENGERS=?");
-			preparedStatement.setInt(1, details.getNoofPassenges() + 1);
-			preparedStatement.execute();*/
+			/*
+			 * preparedStatement =
+			 * conn.prepareStatement("UPDATE CAB SET NOOFPASSENGERS=?");
+			 * preparedStatement.setInt(1, details.getNoofPassenges() + 1);
+			 * preparedStatement.execute();
+			 */
 			preparedStatement.close();
 
 		} catch (
@@ -164,7 +167,7 @@ public class BookingService {
 		int currentCab = 0;
 		int optimalCabNo = 0;
 		while (it.hasNext()) {
-			
+
 			Map.Entry pair = (Map.Entry) it.next();
 			int D = (int) pair.getValue();
 			if (minDistance >= D) {
@@ -172,10 +175,10 @@ public class BookingService {
 				currentCab = (int) pair.getKey();
 			}
 			// minDistance = D;
-			if(D == minDistance) {
+			if (D == minDistance) {
 				optimalCabNo = currentCab;
 			}
-			
+
 			System.out.println(pair.getKey() + " = " + D);
 		}
 
